@@ -1,0 +1,21 @@
+let range.....= '%'
+let foo.......='Vim'
+let something.= 42
+
+"<>Lineup =
+let  range = '%'
+let foo  = 'Vim'
+let something = 42
+-------------------------
+let range.......= '%'
+let  foo........= 'Vim'
+let   something.= 42
+
+int Add(int a, int b);
+void Point(doublePt dp);
+const *char GetString(unsigned int index);
+--------------------------------------------
+int.. Add(int a, int b);
+void. Point(doublePt dp);
+const *char GetString(unsigned int index);
+

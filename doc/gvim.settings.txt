@@ -1,0 +1,134 @@
+
+0. python support(+python)~
+--------------------------------------------------------------------------
+  install python2.7 32bit for gvim 32bit
+  :echo has("python")
+  :version
+
+1. guicursor and guifont~
+--------------------------------------------------------------------------
+  #set up guifont#
+    source $VIM/vimrc_options.vim
+    if has('gui_running')
+        set guifont=Anonymous\ Pro:h12:cANSI
+    endif
+
+  #set up guicursor#
+    source $VIM/vimrc_cursor.vim
+    if has('gui_running')
+        hi Cursor guifg=white guibg=green
+        set guicursor=n-v-c:block-Cursor    "Normal Visual Command-line mode
+        set guicursor+=n-v-c:blinkon0       "blinkon0 for blink OFF
+        set guicursor+=i:hor15-Cursor       "Insert mode
+        WARNING "set guicursor+=i:hor100-iCursor    "NOT WORKING with hor100
+        WARNING "set guicursor+=i:blinkwait10       "NOT WORKING with hor-cursor
+    endif
+
+2. pathogen(+tagbar+aftercolors)~
+--------------------------------------------------------------------------
+  #install git for windows#
+    `$cd $VIM/vimfiles`
+    `$mkdir bundle`
+    `$mkdir autoload`
+    `$cd autoload`
+  #install pathogen#
+    `$curl -LSso pathogen.vim https://tpo.pe/pathogen.vim`
+    `$cd bundle`
+  #install Tagbar#
+    `$git clone https://github.com/majutsushi/tagbar.git`
+  #install AfterColors#
+    `$git clone https://github.com/vim-scripts/AfterColors.vim.git`
+  gvim $MYVIMRC
+  execute pathogen#infect()
+
+3. ctags for tagbar~
+--------------------------------------------------------------------------
+  download ctags58.zip at https://sourceforge.net/projects/ctags/
+  copy to $VIM\vim81\ctag.exe where $PATH is available
+
+4. aftercolors~
+--------------------------------------------------------------------------
+  create custom colorcheme in $VIM\vimfile\after\colors\colorscheme.vim
+  e.g. $VIM\vimfile\after\colors\solarized.vim
+
+5. vimshortcuts~
+--------------------------------------------------------------------------
+
+
+6. folding~
+--------------------------------------------------------------------------
+vimrc_option.vim
+  `set foldmethod=syntax`
+  `set foldlevelstart=1`
+  note if folding not working
+  `let javaScript_fold=1         " JavaScript`
+  `let perl_fold=1               " Perl`
+  `let php_folding=1             " PHP`
+  `let r_syntax_folding=1        " R`
+  `let ruby_fold=1               " Ruby`
+  `let sh_fold_enabled=1         " sh`
+  `let vimsyn_folding='af'       " Vim script`
+  `let xml_syntax_folding=1      " XML`
+
+6. omni completion~
+--------------------------------------------------------------------------
+vimrc_option.vim
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+7. javascript syntax check~
+--------------------------------------------------------------------------
+# install nodejs and jshint #
+$npm install jshint -g
+$git clone https://github.com/vim-syntastic/syntastic.git
+
+$MYVIMRC
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+7. intellisense~
+--------------------------------------------------------------------------
+#install AutoComplPop#
+  `git clone https://github.com/vim-scripts/AutoComplPop.git`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vim: set et ts=2 sw=2 sts=2 ft=help:

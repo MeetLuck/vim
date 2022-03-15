@@ -1,0 +1,163 @@
+*myjavascript.txt*		For Vim version 8.0.			Last change: 2017 Mar 19
+
+		  #Javascript Help Menual#  by Author Meetluck
+
+
+
+
+1. #window object and ID attribute#
+--------------------------------------------------------------------------------
+                                                                 *myjavascript-ID* 
+
+  `<div id='ID'></div>`
+  `window.ID == document.getElementById('ID')`
+  `window.ID == window['ID']`
+  `window.ID = 'newID'`
+  `self.ID == window.ID`
+  `this.ID == window.ID`
+
+  WARNING location == window.location
+    is #file location# being manupulated..
+    
+
+#2. XMLHttpRequest#     
+--------------------------------------------------------------------------------
+                                                     *myjavascript-XMLHttpRequest* 
+  var xhr = new XMLHttpRequest()~
+  xhr.open(method,URL,async)      note async: true for async, false for sync
+  xhr.load = callback;
+  xhr.onreadystatechange = callback;  note old-fashion 
+  xhr.readyState==4   note request finished and response is ready
+  xhr.status == 200   note 200:"OK", 404:"Not Found"
+  xhr.response
+  xhr.responseText    note  Returns the response data as a #string#
+  xhr.responseXML     note  Returns the response data as #XML data#
+  xhr.send()
+
+  `xhr.open('GET',url, true);`
+  `xhr.load = function(){`
+    `console.log(xhr.readyState);`   note xhr.readyState == 4
+  `  if (this.status==200){`
+  `    console.log(this.responseText);`
+  `  }`
+  `}`
+  `xhr.send();`
+
+  CrossOrignResourceSharing(CORS)~
+    firefox,chrome: install add-on
+
+
+#2. bind function# 
+--------------------------------------------------------------------------------
+                                                               *myjavascript-bind* 
+
+#2. addEventListener function#     
+--------------------------------------------------------------------------------
+                                                   *myjavascript-addEventListener* 
+  >
+  var theVars;
+  element.addEventListener('click', callback.bind(null,theVars) );
+  function callback(args,clickEvent){
+    // code here 
+  }
+<
+  note bind `args` with __null__ or __this__(object)
+  note callback is now newCallback(event)
+>
+  var theVars;
+  element.addEventListener('click',
+    function(args,clickEvent){
+        //code here
+    }.bind(null,theVars)
+  );
+<
+
+
+#2. event#     
+--------------------------------------------------------------------------------
+                                                   *myjavascript-event* 
+  
+  click~
+    note element.addEventListener('click', callback);
+    note same as #onclik# = callback
+  input~
+    note element.addEventListener('input', callback);
+    note same as #oninput# = callback
+
+
+
+#2. css Selector#     
+--------------------------------------------------------------------------------
+                                                   *myjavascript-cssSelector* 
+
+  https://www.w3schools.com/cssref/css_selectors.asp
+
+  `.class`
+  `#id`
+  `*`                       Selects all elements
+  `p`                       Selects all <p> elements
+  `div,p`                   Selects all <div> elements and all <p> elements
+  `div p`                   Selects all <p> elements inside <div> elements
+  `div > p`                 Selects all <p> elements where the parent is a <div> element
+  `div + p`                 Selects all <p> elements that are placed immediately after <div> elements
+  `p ~ ul`                  Selects every <ul> element that are preceded by a <p> element
+  `a:active`                Selects the active link
+  `p::after`                Insert something after the content of each <p> element
+  `p::before`               Insert something before the content of each <p> element
+  `input:checked`           Selects every checked <input> element
+  `input:default`           Selects the default <input> element
+  `input:disabled`          Selects every disabled <input> element
+  `p:empty`                 Selects every <p> element that has no children (including text nodes)
+  `input:enabled`           Selects every enabled <input> element
+  `p:first-child`           Selects every <p> element that is the first child of its parent
+  `p::first-letter`         Selects the first letter of every <p> element
+  `p::first-line`           Selects the first line of every <p> element
+  `p:first-of-type`         Selects every <p> element that is the first <p> element of its parent
+  `input:focus`             Selects the input element which has focus a:hover   Selects links on mouse over
+  `input:in-range`          Selects input elements with a value within a specified range
+  `input:indeterminate`     Selects input elements that are in an indeterminate state
+  `input:invalid`           Selects all input elements with an invalid value
+  `p:lang(it)`              Selects every <p> element with a lang attribute equal to "it" (Italian)
+  `p:last-child`            Selects every <p> element that is the last child of its parent
+  `p:last-of-type`          Selects every <p> element that is the last <p> element of its parent
+  `a:link`                  Selects all unvisited links
+  `:not(p)`                 Selects every element that is not a <p> element
+  `p:nth-child(2)`          Selects every <p> element that is the second child of its parent
+  `p:nth-last-child(2)`     Selects every <p> element that is the second child of its parent, counting from the last child
+  `p:nth-last-of-type(2)`   Selects every <p> element that is the second <p> element of its parent, counting from the last child
+  `p:nth-of-type(2)`        Selects every <p> element that is the second <p> element of its parent
+  `p:only-of-type`          Selects every <p> element that is the only <p> element of its parent
+  `p:only-child`            Selects every <p> element that is the only child of its parent
+  `input:optional`          Selects input elements with no "required" attribute
+  `input:out-of-range`      Selects input elements with a value outside a specified range
+  `input::placeholder`      Selects input elements with placeholder text
+  `input:read-only`         Selects input elements with the "readonly" attribute specified
+  `input:read-write`        Selects input elements with the "readonly" attribute NOT specified
+  `input:required`          Selects input elements with the "required" attribute specified
+  `:root`                   Selects the document's root element
+  `::selection`             Selects the portion of an element that is selected by a user
+  #news:target             Selects the current active news element (clicked on a URL containing that anchor name)
+  `input:valid`             Selects all input elements with a valid value
+  `a:visited`               Selects all visited links
+ [attribute]   [target]                    Selects all elements with a target attribute
+ `[attribute=value]`   [target=_blank]       Selects all elements with target="_blank"
+ `[attribute~=value]`  [title~=flower]       Selects all elements with a title attribute containing the word "flower"
+ `[attribute|=value]`  [lang|=en]            Selects all elements with a lang attribute value starting with "en"
+ `[attribute^=value]`  a[href^="https"]      Selects every <a> element whose href attribute value begins with "https"
+ `[attribute$=value]`  a[href$=".pdf"]       Selects every <a> element whose href attribute value ends with ".pdf"
+ `[attribute*=value]`  a[href*="w3schools"]  Selects every <a> element whose href attribute value contains the substring "w3schools"
+
+
+
+#2. css Style#     
+--------------------------------------------------------------------------------
+                                                   *myjavascript-cssStyle* 
+
+  https://www.w3schools.com/css/css_border.asp
+
+
+
+
+
+
+ vim: set et ts=2 sw=2 sts=2 ft=help:

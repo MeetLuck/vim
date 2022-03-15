@@ -1,0 +1,160 @@
+syntax enable	"syntax highlight 
+"enable filetype plugins
+filetype plugin indent on
+
+
+set ttyfast
+set notimeout ttimeout "only keycode delay using ttimeoutlen
+set ttimeoutlen=10
+set autoread
+set autowrite
+set autochdir
+
+" "----- mouse for xterm -----"
+set mouse=a
+"set ttymouse=xterm2
+
+" "----- viminfo -----"
+set viminfo^=%
+
+" "------ find -----"
+"set your path to current directory(from which you launched vim)
+"set path=$PWD/**
+"set path+=~/.vim/**
+
+language messages en_US
+"(display all menus and messages in English)
+
+" " ----- indent options -----"
+set autoindent
+set softtabstop=4   "number of spaces in tab when editing
+set shiftwidth=4    "auto-indent amount when using cindent, >>, <<,...
+set expandtab       "tabs are spaces
+"set tabstop=4      "number of visual spaces per TAB 
+" "NOT needef with expand tab"
+"set smartindent
+"set cindent
+
+" " ----- Current File Directory -----"
+command! -nargs=0 Cfd cd %:p:h
+
+" " ----- Charset -----"
+"set encoding=utf-8
+"scriptencoding utf-8
+set fencs=ucs-bom,utf-8,cp949,utf-16
+" " ----- visual options -----"
+set number relativenumber	"show line numbers
+set noruler	"show current position on the bottom
+"set textwidth=78
+set backspace=indent,eol,start
+set listchars=eol:$,space:.,tab:^I,extends:>,precedes:<
+set hidden	"put buffer to the background without writing
+set noswapfile
+set nobackup
+set nowritebackup
+"set numberwidth=5
+set wildmenu    "visual autocomplete for command menu TABTAB...
+set wildmode=list:longest,full
+
+"set lazyredraw	"redraw only when need
+set incsearch	"search as characters are entered
+set hlsearch	"highlight matches
+set title
+set laststatus=2	"always show status line
+set report=0		"0 for show all changes 
+set showmatch	"highlight matching ({[]})
+set showcmd 	"show command in bottom bar
+set showmode	"show current mode
+set cmdheight=2		"get rid of all the press enter to continue
+"set breakindent	
+set linebreak		"break on words not in the middle of word
+set linespace=0		"don't insert any extra pixel lines between rows
+"set conceallevel=0
+"set signcolumn
+"set colorcolumn=81
+"hi ColorColumn ctermbg=246
+"set cursorline  "highlight current line
+" "---------------solarized ------------"
+if has('gui_running')
+    " "--------gui font set -------"
+    set guifont=Anonymous\ Pro:h12:cANSI
+    "set guifont=Consolas:h11:cANSI
+    "let g:solarized_termcolors=256
+    let g:solarized_termtrans=1
+    "let g:solarized_contrast="low"
+    set background=dark
+    colorscheme solarized
+else
+    colorscheme default
+endif
+" "----- customize solarized --------"
+"~/.vim/bundle/vim-colors-solarized/colors/solarized.vim
+"~/.vim/after/colors/solarized.vim
+ 
+" "----- netrw --------"
+let g:netrw_banner=0
+let g:netrw_liststyle=3
+let g:netrw_browse_split=4
+let g:netrw_altv=1
+let g:netrw_winsize=25
+
+
+" ">>> omnicomplete <<<"
+set completeopt=longest,menuone
+"set omnifunc=syntaxcomplete#Complete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+
+function! <sid>SuperCleverTab()
+    "string =~ {pat}
+    "pat "=\\|\\~"  double \\ for double quote 
+    "pat '=\\|\\~'  single \ for single quote 
+    "pat '[=~#&$?+-]'. '\|[''`",;]' .'\|\s' 
+    let curLine = getline('.')
+    let curChar = strpart(curLine, col('.')-1, 1) 
+    let previousChar = strpart(curLine, col('.')-2, 1) 
+    let NoCompleteAfterThisChar = '[=~#&$?+-]'. '\|[''`",;]' .'\|\s' 
+    let hasSlash = match(previousChar, '\/') != -1 
+    "echomsg "previousChar:" .previousChar
+    "elseif getline('.') =~'^$'
+    "    return "\<Tab>"
+    if &filetype =='vim'
+        return "\<C-X>\<C-V>"
+    elseif hasSlash
+        return "\<C-X>\<C-F>"
+    elseif &omnifunc != '' 
+        return "\<C-X>\<C-O>"
+    elseif &dictionary != ''
+        return "\<C-K>"
+    else
+        return "\<C-X>\<C-N>"
+"   elseif &complete != ''
+"       return "\<C-N>"
+     endif
+endfunction
+inoremap <expr> <C-N> <sid>SuperCleverTab()
+inoremap <expr> j pumvisible()? "\<C-n>":"j"
+inoremap <expr> k pumvisible()? "\<C-p>":"k"
+inoremap <expr> . <sid>DotOmniComplete()
+function! <sid>DotOmniComplete()
+    " "col-2 : a-zA-Z_\d or quotes or ) or right }"
+    " "col-1 : current cursor is dot(.)"
+    let previousChar = strpart(getline('.'), col('.')-2, 1)
+    if previousChar =~ '[a-zA-Z_0-9"'')\]\}]' && &omnifunc !=''
+        "echomsg previousChar
+        return ".\<C-X>\<C-O>"
+    else
+        return '.'
+    endif
+endfunction
+
+" ">>> folding <<<"
+set nofoldenable
+set foldmethod=syntax 	"zR for fold, zM for unfold
+let g:javaScript_fold=1
+let g:vimsyn_folding = 'af'   

@@ -1,0 +1,20 @@
+ 
+
+ e.g. 
+foo\(bar\)\@!		any "foo" not followed by "bar"
+
+\va.(p)@!
+		"a", "apbp", "app", "appp", etc. not immediately
+
+\va.{-}p@!
+a
+ap
+app
+appp
+ap!p
+as
+ note "a", "ap", "app", "appp", etc. not immediately followed by a "p"
+    1. match 'a'
+    2. match any char as FEW as possible including 'p'
+    3. p@! match [^p] such as space,$(EOL)
+

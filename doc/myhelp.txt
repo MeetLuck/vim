@@ -1,0 +1,1791 @@
+*myhelp.txt*		For Vim version 8.0.			Last change: 2017 Mar 19
+
+		  #Personal Help Manual#  by Author Meetluck
+
+Table Of Contents~
+================================================================================
+                                                                         *myhelp*
+1.get help...................................................|myhelp-gethelp|
+2.writing help...............................................|myhelp-writehelp|
+3.motion.....................................................|myhelp-motion|
+4.operator...................................................|myhelp-operator|
+5.search.....................................................|myhelp-search|
+6.windows....................................................|myhelp-windows|
+7.tabs.......................................................|myhelp-tabs|
+8.marks......................................................|myhelp-marks|
+9.jumps......................................................|myhelp-jumps|
+10.changes...................................................|myhelp-changes|
+11.ex-cmd....................................................|myhelp-excmd|
+12.user commands.............................................|myhelp-usercommands|
+13.autocmd...................................................|myhelp-autocmd|
+14.event.....................................................|myhelp-event|
+15.script....................................................|myhelp-script|
+16.functions.................................................|myhelp-functions|
+17.list......................................................|myhelp-list|
+18.dictionary................................................|myhelp-dictionary|
+19.format....................................................|myhelp-format|
+20.options...................................................|myhelp-options|
+21.completion................................................|myhelp-completion|
+22.folding...................................................|myhelp-folding|
+23.registers.................................................|myhelp-registers|
+24.redir.....................................................|myhelp-redir|
+25.mapping...................................................|myhelp-mapping|
+26.literal...................................................|myhelp-literal|
+27.plugins...................................................|myhelp-plugins|
+28.expression................................................|myhelp-expression|
+29.python-vim................................................|myhelp-python-vim|
+30.RegEx.....................................................|myhelp-RegEx|
+31.syntax....................................................|myhelp-syntax|
+ sign........................................................|myhelp-sign|
+ bundle......................................................|myhelp-bundle|
+ menu........................................................|myhelp-menu|
+ digraph.....................................................|myhelp-digraph|
+
+  
+
+helper files~
+-------------------------------
+ 1. source myhelp.vim
+ 2. ~/.vim/after/ftplugin/help.vim    note <A-b> make bold
+ 2. ~/.vim/after/syntax/help.vim
+
+
+
+#1. get help#
+--------------------------------------------------------------------------------
+                                                                  *myhelp-gethelp* 
+    - get help~
+    :help         help.txt
+    - jump to the help~
+    jump to a subject     CTRL-]    
+    jump __f__orward          CTRL-I    
+    jump __b__ackward         CTRL-O    
+    - get help for help~
+    :h helphelp          |helphelp.txt|
+    - open help file~
+    `:h 41`
+    :h usr_41.txt        |usr_41.txt|
+    :h quickref          |quickref|
+    :h __eval__          |eval.txt|
+    :h toc
+    :h usr_toc.txt       |usr_toc.txt|
+    - get specific help~
+    :h y             yank
+    :h v             visual-mode
+    :h i_<Tab>
+    :h i_ctrl<Tab>
+    :h ctrl-w        for __n__ormal mode
+    :h i_ctrl-r      for __i__nsert mode
+    :h c_ctrl-r      for __c__ommand-line
+    :h v_ctrl-r      for __v__isual mode
+    :h :sustitute    for __c__ommand-line command
+    :h sustitute()   built-in function
+    :h textwidth     for __o__ption
+    :h /\v           regular expression
+
+
+#2. writing help file#      
+--------------------------------------------------------------------------------
+                                                                *myhelp-writehelp* 
+    help file:           :h help-writing
+    syntax file(<c-w>f)  :~/.vim/after/syntax/help.vim 
+
+    - generating help tag file~
+      using pathogen~
+        `:set rtp+=~/.vim/path/to/file`
+        :Helptags
+      :helptags /path/to/helpfile~
+        e.g. :helptags ~/.vim/doc
+    - first line format~
+      *helpfile_name.txt*	For Vim version 7.3		Last change: 2010 June 4
+      The first field is a 'link' to the help file name.
+      Each field is separated by a <TAB>. (<c-v><TAB> )
+    - TAGS~
+    *tag name*      a help tag
+    |tag name|      a hot-link to *tagname*
+    `:vimcommand`     vim command hot-link to *:vimcommand*
+    'option'        vim option
+
+    myWarning : do not abuse *help tag*
+
+
+
+#3. motion#           `:h motion.txt`
+--------------------------------------------------------------------------------
+                                                             *myhelp-motion* 
+
+#0#(col 0)  #^#(first non-blank char) ....... #g_#(last non-blank char)  #$#<EOL>
+
+             n#k#
+             ^
+        n#h# <   > n#l#
+             v
+             n#j#
+
+    note gk == k based on __display__ lines  NOT real lines
+    note gj == j based on __display__ lines  NOT real lines
+
+    gg
+    [N]G    :N
+    G
+    CTRL-G  where you are in the current file
+
+    [N]%            note literal percent(%)
+    [N]|            note column ,use [N]l
+    z__t__ z__z__ z__b__        note scroll top, center, bottom
+    H M L           note cursor position High, Middle, Low
+
+    {word}: iskeyword
+    {Word}: seperated by {space}
+    __w__ord/__e__    __W__ord/__E__    note go forwards 
+    __b__ack/__g____e__   __B__ack/__g____E__   note go backwards
+
+    f{char}
+    t{char}     note __before__ cursor
+    F{char}     note backwards
+    T{char}     note backwards, before cursor
+    d/{pattern}/
+    d/{pattern}/e
+    d/{pattern}/e+2
+
+    - marks~
+    `d'a,'b`         note delete from mark __a__ to mark __b__ 
+    `d'<,'>`         note delete selection
+   `:normal d'<,'>` 
+   `:'<,'>d`         WARNING ex-cmd, delete selected __lines__ 
+
+
+#4. operator #           `:h operator`
+--------------------------------------------------------------------------------
+                                                             *myhelp-operator* 
+
+    __i__               __I__  = ^i
+    __a__               __A__  = $a
+    __o__               __O__  = ko         <NL> e.g. 3__o__, 2__O__
+    __c__{motion}       __C__  = c$
+    __r__               __R__               --Replace--  e.g. 2__r__
+    #s#               __S__  = cc         substitute   e.g. 3__s__
+    __d__{motion}       __D__  = d$     
+    __y__{motion}       __Y__  = yy         :map Y y$   "{reg}y{motion}
+    __p__               __P__  = hp         "{reg}p
+    __x__                               e.g. 3x 
+    __v__{motion}       __V__{motion}       visual, visual-line
+    CTRL-v                          visual-block
+    g__v__                              last selection
+    __~__                               swap-case
+    g__u__{motion}      g__U__{motion}
+    __u__ndo            CTRL-r(redo)
+    __=__{motion}                       autoindent
+    __=____=__                              autoindent 
+    __&__               :&              note repeat last substitute
+    g__&__      :&&     :%s//~/&        note repeat last substitute with search pattern with same flags
+    !{motion}{filter}               e.g. !3j, !3!, :.,+2!
+    !!{filter}                      e.g. :.!{filter}
+    {visual}!{filter}
+
+    - indent~
+      >>    <i_Ctrl-t> 
+      <<    <i_Ctrl-d>
+
+    - find char~
+      f{char}
+      t{char}   __before__ {char}
+
+      note backwards
+      F{char}
+      T{char}   __before__ {char}
+
+    - match <cword>~
+      *     match <word>
+      g*    match word __without__ __boundary__
+      e.g.  __ord__ a__ord__ w__ord__ 
+
+      note backwards
+      #
+      g#
+
+    - change,delete,yank,visual~
+      __c__{motion}        c3w,  c2W,  ct{char},  c/pattern/e
+      __d__{motion}        d3w,        dt{char},  d/pattern/ 
+      __y__{motion}        yw,   yaw,  yt{char},  y/pattern/
+      __v__{motion}        v2e,  vaE,  vt{char},  v/pattern/e
+
+    - visual-mode~
+      v{motion}       --visual--
+      V{motion}       --visual line--
+      ctrl-v{motion}  --visual block--
+      e.g.  v__w__  v__e__  v2__l__     
+      note vw select word and move cursor to the next word
+
+    - keep indentation~
+      select with __v__ and replace with __r__
+
+    - text object~
+    __w__ord, __b__lock, __t__ag ,__s__entence ,__p__aragraph
+
+    a__b__     (   i__b__   ) 
+    a__B__     {   i__B__   } 
+    a__t__     <tag> i__t__ </tag>
+    a__"__     "   i__"__   " 
+    a__'__     '   i__'__   ' 
+    a__[__     [   i__[__   ] 
+    a__<__     <   i__<__   > 
+
+    - insert-Normal mode~
+    note --insert--   <C-O>   --(insert) #normalCommands#  --insert--
+    e.g. 
+      --insert-- CTRL-Ozt --insert--
+      --insert-- CTRL-Ozz --insert--
+
+
+#5. search #           `:h /`   `:h search-commands`
+--------------------------------------------------------------------------------
+                                                             *myhelp-search* 
+    /{pattern}/{offset}
+    ?{pattern}?{offset}
+
+    - offset~
+    /pattern/__s__+N    +N character to __s__tart of the match 
+    /pattern/__e__+N    +N character to __e__nd of the match 
+    /pattern/__s__-N    
+    /pattern/__e__-N   
+    /pattern/+N     +N lines    
+    /pattern/-N     -N lines
+
+    e.g. 
+    __d__/test/+1,    __v__/test/e,   d/test/s+2,   __c__/test/-1
+
+    - search within visual selection~
+    `/\%V`{pattern}
+
+
+#6. windows #           `:h windows`
+--------------------------------------------------------------------------------
+                                                             *myhelp-windows* 
+
+    :nnoremap <leader>w  <C-W>
+    :nnoremap <leader>wt :tabnew
+    :exe @0~
+
+    <C-W>s      :sp   __s__plit
+    <C-W>v      :vs   __v__ertical split
+    <C-W>n      :new
+    <C-W>c      :close
+    <C-W>o      :__o__nly
+    <C-W>r      potate window
+    <C-W>x      e__X__change window
+    <C-W>T      convert to a __t__ab
+
+    - go to file or tag~
+    gf          go to file
+    <C-W>f      split gf
+    <C-W>gf     tab gf
+    <C-W>]      split CTRL-]
+
+    <C-W>hjkl
+    <C-W>t      top
+    <C-W>b      bottom
+
+    [#N]<C-W>w 
+    <C-W>p      previous window      
+    -----------------------------
+   |  #1     |    #2    |   #3  |
+    -----------------------------
+   |     #4       |      #5     |
+    -----------------------------
+   |     #6  |    #7    |  #8   |
+    -----------------------------
+
+    - using mouse to resize windows~
+        :set mouse=a
+        :set ttymouse=xterm2
+
+    - resize window~
+    <C-W>- N      <C-W>< N
+    <C-W>+ N      <C-W>> N
+    <C-W>=        <C-W>=     make equal size
+    <C-W>_        <C-W>|     maximize
+
+    N <C-W>_     :resize N     
+    N <C-W>|     :vert resize N
+    z N<CR>      :resize N
+
+
+#7. tab#           `:h tab`
+--------------------------------------------------------------------------------
+                                                             *myhelp-tab* 
+    :tabe
+    gt
+    gT    note backwards
+    [N]gt
+
+
+#8. marks#           `:h marks`
+--------------------------------------------------------------------------------
+                                                             *myhelp-marks* 
+    - with `(backtick)~
+     jump to the exact location(character-wise)
+    - with '(single quote)~
+     jump to the first non-blank character(line-wise)
+
+    __`__a - __`__z     valid within file 
+    __`__A - __`__Z     valid between files
+    __`__0 - __`__9     valid between files, set from .viminfo file
+    __`__<   __`__>     __visual__ selection marks
+    __`__`          before __lastest__ jump
+    __'__'          before __lastest__ jump
+    __'__"          position when last exiting current buffer
+    __`__^          #✓# last __Insert__
+    __`__.          #✓# last __change__ (`:changes`)
+    __`__[   __`__]     __yanked__ or previously changed text
+    __`__(   __`__)     current sentence
+    __`__{   __`__}     current paragraph
+    __`__0          Note: get back to where you left Vim
+                      alias vim="vim -c \"normal '0\""
+    __`__1          Note: one time before when you last exist Vim
+
+    - list marks~
+    :marks
+    :marks a-zW-Z
+    :marks '\"^.]       Note: escape " with \"
+    :marks ' \" ^ . ]
+
+    - delete marks~
+    delmarks!   delete __but__ __not__ A-Z0-9
+    delmarks a b 1
+    delmarks \"
+
+    - highlight marks~
+    :match hiGroup /\%'__m__/
+    :hi    marka    cterm=None ctermfg=1
+    :hi    markb    cterm=None ctermfg=2
+    :match  marka    /\%'a/
+    :2match markb    /\%'b/
+    :match Errormsg  /\%'\[/
+    :match Errormsg  /\%'\./
+    :match Errormsg  /\%'\^/
+
+    \%'m    note matches with the position of mark m
+
+
+
+
+#9. jumps#      `:h jump-motions` 
+--------------------------------------------------------------------------------
+                                                                *myhelp-jumps* 
+
+ - list jumps~
+ :jumps
+
+ - clear jumps~
+ :clearjumps
+
+ CTRL-O     goto Older cursor position in jump list
+ CTRL-I     goto newer cursor position in jump list
+ CTRL-]     jump to the 'tag'
+
+
+
+
+
+#10. changes#      `:h changes` 
+--------------------------------------------------------------------------------
+                                                                *myhelp-changes* 
+
+ - list changes~
+ `:changes`
+ g;     note go bacwards - old position
+ g,     note go forward  - new position
+ 999g,  note go to the latest change
+
+
+
+
+#11. ex-cmd(line-wise operation)#           `:h script` `h: 41`
+--------------------------------------------------------------------------------
+                                                             *myhelp-excmd* 
+
+  - syntax~
+    :[range] command [options] 
+
+  - repeat last ex-cmd~
+    @:
+
+  - history~
+    :his cmd          :his :
+    :his search       :his /
+    :his expr         :his =
+    :his input        :his @
+    :his debug        :his __>__
+    :his all        
+    :<UP>
+    :<DOWN>
+
+  - address lines~
+    `:h cmdline-ranges`     `:h 10.3`
+    .       current line
+    -       -1 line relative to current line 
+    +       +1 line relative to current line 
+    -n      -n line relative to current line 
+    +n      +n line relative to current line 
+    0       top line(virtual line 0)
+    $       last line
+    %       all lines
+    x       line x
+    x,y     lines x through y
+    x;y     lines x through y, with current line set to x
+    x-n
+    x+n
+    /pattern/-n
+    /pattern/+n
+    :\/     the next line last search
+    :\?     the previous line last search
+    :\&     the next line last substitute match pattern
+    N:      e.g. `3:`  ↔  `:normal 3:`   ↔   `:.,.+2`
+
+    e.g. 
+    :5,/the previous line matched/-d
+    :5,/the line matched/d
+    :5,/the next line matches/+d
+
+   :[range]d  {reg} 
+   :[range]co {address}       note copy and paste to line address 
+   :[range]t  {address}       
+
+      e.g. :%t$
+   :[range]m  {address} 
+   :[range]p
+   :[range]#
+
+
+
+  - read file~
+    {range}r [++opt] [filename]        note default:current file
+    [range]r [++opt] !{shellcmd}
+    :r file.txt     insert after current line
+    :+r file.txt    insert after current line   note: relative line number
+    :-r file.txt    insert before current line
+    :0r file.txt    insert after line 0
+    :$r file.txt    insert after last line
+    :/pattern/  r file.text    insert after  the line matching /pattern/
+    :/pattern/- r file.text   insert before the line matching /pattern/
+    :r !ls
+    :r !date
+    :r !find / -name txt -ls
+
+  * <C-R>={expr}
+  cwd is <c-r>=expand("%:p:h:~")
+  cwd is /home/next/.vim/myplugin/doc
+  echo expand('%:p:~:h')
+
+  - write file~
+    :[range]w! [++opt] {file}
+    :[range]w [++opt] >>
+    :[range]w [++opt] >> {file}
+    :[range]w [++opt] !{cmd}
+    :w file.txt
+    :.,+2write!   file.txt
+    :-2,+2write!  file.txt
+    :1,10write! >>
+    :1,10write! >> file.txt
+
+  - edit file~
+    :e [++opt] [+cmd]            reload current file
+    :e! [++opt] [+cmd] {file}    discard any changes to the current buffer
+
+  - reload file~
+    :update     note only write when the buffer has been modified
+
+  - filter !~
+    :[range]![!]{filter} [!]arg     `:h filter`     `:h :!`
+
+    A filter accepts text at standard input, __change__ __it__ in some way,
+    and sends it to standard output.
+
+    !N!   :.,N!
+    e.g. 
+    !!       →  :.!
+    !4! ↔ !296G! ↔ :.,.+3!            myWarning: with or without colone(:)
+    __!!__sh     ↔  !!$SHELL   ↔  __:.!__sh   myWarning: with or wihout ':'
+    <c-v>__!__sh ↔  __:'<,'>!__sh
+
+ - using a filter to replace a command  with its output~
+    date
+    `:.!sh` will replace current line('.') with output of !sh 
+
+- sort and replace~
+    e.g.  using `!4!sort` or `!296G!sort`
+      line4
+      line3
+      line1
+      line2
+
+✓ make table using !column -t program~
+    1. first<Tab>blabla...
+    2. second<Tab>blabla
+    3. third<Tab>blabla 
+    `!!column -t`
+
+  asyncronous run external program(windows)~
+    `:! start firefox www.duckduckgo.com`
+    `:!(start firefox www.duckduckgo.com)`
+    WARNING `:! command` OR `!(command)` NOT `!command`
+    note supress <Hit anykey ...>
+    `:silent ! start firefox www.duckduckgo.com   <==>  `C:\Users\Meetluck> start firefox www.duckduckgo.com`
+    `:silent !(start firefox www.duckduckgo.com)  <==>  `C:\Users\Meetluck> start firefox www.duckduckgo.com`
+
+    :s[ustititue]~
+    :%&g    repeat the last search globally
+    note: flag [g] replace ALL in the line.
+
+    pat1 pat2  pat3
+    `:s/pat/insert&/ | noh`           myWarning: the last slash(__/__)
+    e.g. pat1 pat2 pat3
+
+    `:s/pat/insert&/g | noh`  ->  insertpat1 pat2  pat3
+    `:s/pat/&add/g | noh`     ->  insertpat1 insertpat2  insertpat3
+
+    pat1add pat2add  pat3add
+
+    repeat with :&~
+    `:& |noh`
+    keep the flas~
+    :&&
+    newpat1 pat2  pat3
+    `:&g |noh`                     myWarning: see the difference with __flag__ g
+    newpat1 newpat2  newpat3
+    note :&  == :s/pat/new&/     myWarning: the last slash(/) 
+    note :&g == :s/pat/new&/g    myWarning: the last slash(/) 
+
+    2-letter or 3-letter substitute~
+    note: repeat last substitute
+    :s/{pattern}/{replace}/{++opt}
+    :sg
+
+  :global[!]~
+    :[range]g[!]/{pattern}/{cmd}
+
+    simulate normal A cmd~
+    :g/{pattern}/s//&{appendText}/g
+    simulate normal I cmd~
+    :g/{pattern}/s//{insertText}&/g
+
+    e.g. normal commands
+    :g/pat/norm dw
+
+    e.g. execute macro(reg @q) 
+    :g/pat/norm @q
+
+    e.g. add newline(<NL>) for all lines
+    :g/^/put =\"\n\"
+    :g/^/put _
+
+    e.g. yank N lines into reg A(append)
+
+    :[range]y {reg} {count}    note yank {count} lines into {reg}
+    :g/pattern/+y A 5
+
+    e.g. delete all blank lines
+    g!/./d
+
+  :normal[!] {commands}~
+      e.g. 
+      :normal 2kAEOL
+
+  :execute {expr1} ..~
+      e.g. 
+      :exe "normal 2kAEOL\<ESC>2j"
+    
+
+  :put {reg}~
+  :put ={expr}
+  note escape \", \| to prevent from terminating the command.
+  :put ="\n"      note @= is '\n'
+  :put =\"\n\"    note @= is ^J
+
+  `:put =system('cal -3')`
+  `:r !cal -3`
+        6월 2018              7월 2018              8월 2018      
+  일 월 화 수 목 금 토  일 월 화 수 목 금 토  일 월 화 수 목 금 토
+                  1  2   1  2  3  4  5  6  7            1  2  3  4 
+   3  4  5  6  7  8  9   8  9 10 11 12 13 14   5  6  7  8  9 10 11 
+  10 11 12 13 14 15 16  15 16 17 18 19 20 21  12 13 14 15 16 17 18 
+  17 18 19 20 21 22 23  22 23 24 25 26 27 28  19 20 21 22 23 24 25 
+  24 25 26 27 28 29 30  29 30 31              26 27 28 29 30 31    
+                                                               
+  `:put =sqrt(2)`
+  `:put =execute('ls')`
+  `:put =execute('reg a')`
+  `:put =execute('marks ab')`
+
+  :match~
+  :match {group} /{pattern}/
+  :2match {group} /{pattern}/
+  :3match {group} /{pattern}/
+  :hi markabc cterm=inverse ctermfg=None
+  :match markabc  /\%'\./
+  :2match markabc /\%'b/
+  :3match markabc /\%'c/
+  :match none
+  :match
+  :2match
+  :3match
+  :match col23 /\%23c/        note match column 23.
+  :2match col23 /\%<23c/      note match before column 23.
+  :3match col23 /\%>23c/      note match after column 23.
+
+  ex-cmd special characters~
+  `:h cmdline-special`
+
+  filename modifier~
+  %   current file
+  #   alternate file
+  <cword>     cursor word
+  <cWORD>     cursor WORD
+  <cfile>     cursor file
+  <afile>     autocmd file
+  <abuf>      autocmd buffer
+
+  names with space~
+  `:set isfname+=32`
+  `~/dir with space/file with space.txt`
+  WARNING has problem with <gf>
+
+  expand()~
+    %         current file name
+    #         alternate file name
+    <cfile>   filename under the cursor
+    <afile>   autocmd file name
+    <abuf>    autocmd buffer number(as a String!)
+    <amatch>  autocmd matched name
+    <sfile>   sourced script file or function name
+    <slnum>   sourced script line number or function name
+    <cword>   word under the cursor
+    <cWORD>   WORD under the cursor
+
+  fnamemodify({fname},{mods})~
+   note  see filename-modifiers
+  #filename-modifiers#
+   :__p__   full __p__ath 
+   :__e__   __e__xtension
+   :__~__   __h__ome
+   :__h__   __h__ead
+   :__t__   __t__ail
+   :__r__   __r__oot of {fname}(last extension removed)
+   e.g. 
+   {fname} : src/version.c {curdir} : home/mool/vim
+   {mods}
+   :h     src     note head__/__(slash)tail
+   :t     version.c
+   :e     c      note root.(dot)extension
+   :t:r   version
+   :p     /home/mool/vim/src/version.c    note full path
+   :p:__~__   ~/vim/src/version.c       note /home/mool -> __~__
+   :p:h   /home/mool/vim/src
+   :p:t   version.c
+
+  fnameescape()~
+  has()~
+    `:h feature-list`
+    `if has('win32')`
+    `"do something`
+    `endif`
+
+  exists()~
+
+  :echo expr1 expr2 ...~
+    e.g. echo 'mylists: ' [1,2,3] ['a','b','c']
+
+
+#12. user commands#           `:h user-commands`
+--------------------------------------------------------------------------------
+                                                             *myhelp-usercommands* 
+
+    `:h 40.2`   defining command-line commands
+    user commands must start with a __C__apital letter.
+
+    list user-defined commands~
+    `:command`
+    `:verbose command`
+    `:verbose command Vexplore`
+
+    redefine with !~
+    :command__!__ -nargs=0 ...
+
+    delete~
+    :delcomand SayIt
+
+    number of arguments~
+    :command -nargs=0 MyCommand ....
+    -nargs=0
+    -nargs=1
+    -nargs=*    Any number of argument
+    -nargs=?    Zero or one argument
+    -nargs=+    One or more argument
+
+    using the arguments~
+    <args>      
+    <q-args>    for quoted string e.g. say "Hello" 
+    <f-args>    __f__unction __a__rguments(list of strings)
+
+    :command! -nargs=+ Say  :echomsg "<args>"
+    :command! -nargs=+ Sayq :echomsg <q-args>
+    :command! -nargs=+ DoIt :call Afunction(<f-args>)
+    :Say  say Hello
+    :Sayq say "Hello"
+
+    myWarning: see the difference
+	:`command` -nargs=__3__ DoIt :call AFunction(<f-args>)
+    `:DoIt a b c` same as `:call Afunction("a","b","c")`
+
+    `let` x=10
+    `:command!` -nargs=__1__ DoIt `:call` Afunction(a,<f-args>)
+    function! Afunction(x,y)
+        `echomsg` "x is " .a:x
+        `echomsg` "<f-args> is " .a:y
+    endfunction
+
+    line range~
+    -range          default is the __current__ line
+    -range=%        default is the whole file
+    -range={count}  
+     the last number is used as a single number whose default is {count}
+
+    :command -range=% SaveIt :<line1>,<line2>write! save_file
+    <line1> first line
+    <line2> last line
+
+    other options~
+    -count={number}
+    -bang               a <bang> will result in a __!__.
+    -register           a <reg>
+    -complete={type}
+    -bar                `Usercommand1 | Usercommand2 |"comment`
+    -buffer             local to current buffer
+    <lt>                escape <>
+
+    -bang~
+    command! -nargs=* -bang Mysave :sav<bang> "<args>"
+    command! -nargs=? -bang Mybang call Mybang(<bang>0,'<args>')
+    function! Mybang(bang,arg)
+      if a:bang
+        echomsg 'arg is !'.a:arg
+      else if empty(a:arg)
+        echomsg 'arg is empty'
+      else
+        echomsg 'arg is' .a:arg
+      endif
+    endfunction
+
+
+
+
+#13. autocmd#           `:h autocmd` `h: 41`
+--------------------------------------------------------------------------------
+                                                             *myhelp-autocmd* 
+
+ syntax~
+     :autocmd [group] {event} {filepattern} {nested} {command}
+
+ event~
+    `:h autocmd-events`
+
+ file pattern~
+ when the pattern includes a slash(/), Vim will compare __directory__ name.
+     `/home/*.text`
+     home/`*.text`   myWarning : without slash(/), only the last part is used.
+
+ delete with !  ~
+    :autocmd! FileWritePre *
+
+ listing~
+ :autocmd
+ :autocmd BufNewFile
+
+ list all autocmd for the pattern~
+    :autocmd * {pattern}
+    :autocmd * *.c
+ list all autocmd for the group~
+    :autocmd {group}
+
+ Groups~
+	:augroup cprograms
+	:  autocmd BufReadPost *.c,*.h :set sw=4 sts=4
+	:  autocmd BufReadPost *.cpp   :set sw=3 sts=3
+	:augroup END
+
+    list autocmd in group~
+    :autocmd {group}
+    delete autocmd in group~
+    :autocmd! {group}
+
+ buffer-local autocmd~
+    `:h autocmd-buflocal`
+
+    instead of a pattern,~
+    buffer-local autocmd use
+        <buffer>            current buffer
+        <buffer=bufnr>      buffer number
+        <buffer=abuf>       using <abuf> 
+    remove buffer-local autocmd~
+        :autocmd! * <buffer>
+        :autocmd! CursorHold <buffer>
+        :autocmd! * <buffer=33>
+    list buffer-local autocmd~
+        :autocmd * <buffer>
+
+    nesting~
+    note that commands executed as the result of an autocmd event will 
+              NOT triggner any new events.
+    To make the events triggerd, add 'nested' argument.
+    :autocmd FileChangedShell * `nested` edit
+
+
+
+#14. event#           `:h autocmd-events`       `h: autocmd`
+--------------------------------------------------------------------------------
+                                                             *myhelp-event* 
+  FuncUndefined~
+    note when a user function is used but it isn't defined
+    e.g. 
+    `autocmd` `FuncUndefined` SyntaxAttr*  `exe` 'runtime autoload/' . expand('<afile>') . '.vim'
+    note using autoload script
+    note the file name(`filename.vim`) and the name `filename`#funcname must match EXACTLY
+    note When such a function is called and not defined yet, Vim will search the 'autoload'
+    directories in 'runtimepath' for a script called 'filename.vim'
+    For example "`~/.vim/autoload/filename.vim`"
+    e.g. `call` __filename__#__funcname__()
+         `function` __filename__#__funcname__()
+            echo 'Done!'
+         endfunction
+
+  NOTE: `autocmdEvent.txt`
+  BufLeave~
+    note VIM leaves current buffer<abuf> entering another buffer
+  WinLeave~
+    note VIM leaves current buffer's window moving to another window
+  BufWinLeave~
+    note VIM leaves current buffer's ALL window
+
+
+
+#15. script#           `:h script` `h: 41`
+--------------------------------------------------------------------------------
+                                                             *myhelp-script* 
+
+ ✓ list scripts~
+    :script
+    :scriptnames
+
+ ✓ variables~
+    __In__side  a function:  __local__ to a function
+    __out__side a function:  __global__
+
+    buffer-variable     __b:__  local to the current buffer
+    window-variable     __w:__  local to the current window
+    tab-variable        __t:__  local to the current tab page
+    global-variable     __g:__  global
+    local-variable      __l:__  local to a function
+    script-variable     __s:__  local to a sourced script
+    vim-variable        __v:__  global, predefined by Vim
+    function-argument   __a:__  only inside a function
+
+  global-variable~
+    g:~
+      note inside function gloval variables are accessed with "g:"
+      note dictionary of gloval variables
+      :let F = {-> g:}
+      :echo F()
+      note one-line
+      :echo {->g:}()
+      note same as the following
+      :echo g: 
+      
+
+  vim-variable~
+    v:this_session~
+      note full filename of the last loaded or saved session file
+      note when no session file has been saved, v:this_session is empty
+      :mks!
+      :echo v:this_session
+
+    v:oldfiles(MRU)~
+        note it is __list__
+        `:old`
+        `:oldfiles`
+        `:browse oldfiles`
+        :e #<n  where n is a old file number
+    v:val~
+      value of current item of list or dictionary
+      note only valid in |map()| or |filter()|
+    v:key~
+      key of dictionary
+      note only valid in |map()| or |filter()|
+
+
+ curly braces variable~
+    my_{expression}_variable
+    When vim encounts this, it __evaluate__ the expression inside the braces,
+    put that in place of the expression, and re-interprets the whole as
+    a variable.
+
+    :let my_dark_colorscheme ='solarized'
+    :let my_light_colorscheme='shine'
+    :echo my_{&background}_colorscheme
+    :echo my_{adverb}_{adjective}_message   note: multiple braces
+    :echo my_{ad{end_of_word}}_message      note: nest braces 
+    where end_of_word is either 'verb' or 'jective'
+
+   curly braces function name~
+    :let funcend='whizz'
+    :call my_func_{func_end}(parameter)
+
+  ✓ library~
+    - writing libray scripts~
+      `:h write-libray-script      :h 41`
+      `:h autoload`
+    - define function in library~
+      `mylib.vim`
+      `fuction! mylib#myfunction(args)`
+        ...
+      `endfunction`
+    - call function~
+      `call mylib#myfunction(args)`
+
+    e.g. 
+      `/dir/mylib.vim`
+      `fuction! myfunction(args)`
+        ...
+      `endfunction`
+      ...
+      ...
+      `call path/to/dir#mylib#myfunction(args)`
+
+
+
+
+#16. functions#        
+--------------------------------------------------------------------------------
+                                                             *myhelp-functions* 
+✓ list functions~
+  :function
+  :function mywindow<Tab>
+  :function *upd<Tab>   note to list <sid>functionName(...)
+
+  built-in functions~
+    __bufname__(filename or bufnr or %)
+      `bufname("%")`		    the name of current buffer
+      `bufname("pattern")`	the name of buffer where "pattern" matches.
+      `bufname(3)`		      the name of bufnr=3
+
+    __bufnr__(filename or %)
+      `bufnr("%")`          the bufnr of current buffer
+      `bufnr("pattern")`    the bufnr that "pattern" matches
+                          WARNING: if "pattern" matches more than two, return -1 
+
+    win__bufnr__(winnr or winid)
+      e.g.  let bufnr = winbufnr(2)  the bufnr(winnr=2)
+      e.g.  `bufname(bufnr)`           the bufname of winnr=2
+
+    __winnr__($ or [N]j or {N}k or [N]h or [N]l )
+      `winnr()`      ✓ the current winnr
+      `winnr("#")`     the previous winnr
+      `winnr("$")`     the last winnr
+      `winnr("k")`     the winnr above winnr()
+      WARNING: for current winnr, use winnr() NOT winnr('%')
+
+    buf__winnr__(filename or bufnr or %)
+      `bufwinnr("%")`         the __first__ winnr with current buffer
+      `bufwinnr("patt`ern")   the __first__ winnr with buffer that __matches__ 'pattern'
+      `bufwinnr(2`)           the __first__ winnr with bufnr=2
+
+    buf__winid__(filename or bufnr or %)
+      `bufwinid("%")`         the __first__ winid with current buffer
+      `bufwinid("patt`ern")   the __first__ winid with buffer that __matches__ 'pattern'
+      `bufwinid(2`)           the __first__ winid with bufnr=2
+      `bufwinid(bufnr('filename'))`  the __first__ winid with buname='filename'
+
+    getwininfo(winid)   returns info about windows as a list__[__{},{},...__]__ with dictionaries
+    getwininfo()        returns info about __all__ the windows in __all__ the tab pages
+    win_findbuf(bufnr)  returns a list__[____]__ of <window-ID>__s__ for window__s__ that contain bufnr
+    win_getid(winnr)    return <window-ID> for winnr
+      `win_getid()`       the ✓ __current__ <window-ID>
+
+    setbufline(burnr,linr,text)
+			let winid = popup_create('hello', {})
+			let bufnr = winbufnr(winid)
+			call setbufline(bufnr, 2, 'second line')
+
+    win_execute()
+    setwinvar()
+    setbufvar()
+
+     split(string,{pattern},{keepempty})  return list []
+      e.g. split('a b c  d  E') == split('a b c  d  E',__'__\W\+__'__)
+      myWarning   '{pattern}' NOT "{pattern}"
+      e.g. 
+      let sample = split(':a:b:c',':') | echo sample
+      -> ['a','b','c']
+      let sample = split(':a:b:c',':',1) | echo sample
+      -> ['','a','b','c']   note keepempty=1
+
+
+    line({expr})    return line number
+        line("__.__")    current line number
+        line("__$__")    last line number
+        line("__'__t")   line number of __marker__ t  note: return 0 if mark not set
+
+    getpos({mark}) returns ['bufnr','linenr',col,off] of {mark}
+        note: bufnr is __0__ if __local__ marks(a-z,auto-marks)
+              bufnr is the bufnr of global mark A-Z,0-9
+
+    char2nr({expr}) returns Ascii code
+        :echo char2nr('A')  '65'
+
+    nr2char({expr})
+        :echo nr2char(65)   'A'
+    getchar()
+    //TODO
+
+    execute({cmd}[,{silent}])
+        :echo execute('ls')
+        :put = execute('ls')
+
+    get({dict},{key} [,{default}])
+      note get item with key from {dict}
+      note when the item is not available, return {default}
+      note return zero when {default} is omitted
+
+    exists({expr})
+      note 1(TRUE) if {expr} is defined, 0(FALSE) otherwise
+      &option       note Vim option
+      $ENVNAME      note environment variable
+      *function     note built-in function or user-function
+      variable      note internal varialbe, List, Dictonary, etc
+      :ex-cmd       note ex-cmd
+      #event        note autocmand defiend for this event
+      eventpattern  note autocmand defiend for this event and pattern
+      #group        note autocommand group exists
+      groupevent    note autocommand group defined for this group and event
+      groupevent#pattern       note autocommand defined for this group,event and pattern
+      ##event                  note autocommand for this event is supported
+      e.g. 
+      exists("&shortname")
+      exists("$HOSTNAME")
+      exists("*strftime")
+      exists("*s:MyFunc")
+      exists("bufcount")
+      exists(":Make")
+      exists("#CursorHold")
+      exists("#BufReadPre#*.gz")
+      exists("#filetypeindent")
+      exists("#filetypeindent#FileType#*")
+      exists("##ColorScheme")
+  glob~
+    glob({expr},{nosuf},{list},{alllinks})
+    note expand the file wildcards in {expr}
+    note wildcards
+      ?      matches one character
+      *      matches anything
+      **     matches anything, recurses into directories
+      [abc]  matches 'a','b', or 'c'
+    note {nosuf} : no suffix
+    e.g. 
+      glob('*.txt')   same as ls *.txt
+      glob('*.txt',0,1)  as [list]
+      echo glob('../**/my.*')
+      echo glob('../bundle/**')
+  readdir~
+    readdir({dir},{expr})
+        return a list with file and directory names in {dir}
+        note expr is Funcref
+    e.g. 
+    readdir('.')     result in   same as `ls` or `dir`
+    readdir('.',{val->val =~ 'my'})     result in   [myhelp.txt, myshell.txt, ...]
+    readdir($HOME)
+    readdir($home)
+  globpath~
+    globpath({path}, {expr} [, {nosuf} [, {list} [, {alllinks}]]])
+    note perform glob() on all directories in {path} and concatenate the result.
+
+  empty()~
+    empty({expr})
+    note a List,Dictionary,String is empty if its length is zero
+    note a Number,Float is empty if 0
+
+  matchstr({expr}, {pat} [, {start} [, {count}]])
+    note return matched string
+    note return "" when there is no match
+    e.g. 
+    echo matchstr(" trim leading whitespace \n nextline  ",'^\v\s*\zs.{-}\ze\s*$')
+
+  matchadd({highlight},{pattern})   return match ID
+    e.g. 
+      :hi myhiGroup guibg=red
+      :let matchID = matchadd("myhiGroup","patternToSearch")
+      :call matchdelete(matchID)
+
+  matchaddpos({highlight}, [[linenr,colnr],linenr]) match ID
+    e.g. 
+      :hi myhiGroup guibg=green
+      note highlight character at line 23, column 10 and whole line 24
+      :let matchID = matchadd("myhiGroup",[ [23,10], 24])
+      note delete matchID
+      :call matchdelete(matchID)
+  matchaddpos()
+
+16.1 lambda and method call~
+                                                             *myhelp-lambda* 
+lambda expression {args->expr1}
+  the prefix "a:" should not be used for arguments.
+    e.g. 
+    :let Addfn = {a,b->a+b}
+    :echo Addfn(2+5)
+  the arguments are optional
+    e.g. 
+    :let Errorfn = {->'errorfunction'}
+    :echo Errorfn()
+    :echo Errorfn()
+  map(list,{fref})
+    e.g. 
+    :exe "echo [1,2,3]->map({idx,val->2*val})"
+    :echo [1,2,3] -> map({a,b -> 2*b})    result in [2,4,6] note b is value
+    :echo [1,2,3] -> map({b -> 2*b})      result in [0,2,4] note b is index
+                                                             *myhelp-method*  *method-call*
+
+
+#17. list#
+--------------------------------------------------------------------------------
+                                                             *myhelp-list* 
+    get()			get an item without error for wrong index
+    len()			number of items in a List
+    empty()			check if List is empty
+    insert()		insert an item somewhere in a List
+    add()			append an item to a List
+    extend()		append a List to a List
+    remove()		remove one or more items from a List
+    copy()			make a shallow copy of a List
+    deepcopy()		make a full copy of a List
+    filter(expr1,expr2)		remove selected items from a List
+    map()			change each List item
+    sort()			sort a List
+    reverse()		reverse the order of a List
+    uniq()			remove copies of repeated adjacent items
+    split()			split a String into a List
+    join()			join List items into a String
+    range(start,end,step)		return a List with a sequence of numbers
+      e.g. range(1,4)   -> [1,2,3,4]
+      e.g. range(4)     -> [0,1,2,3]
+    string()		String representation of a List
+    call()			call a function with List as arguments
+    index()			index of a value in a List
+    max()			maximum value in a List
+    min()			minimum value in a List
+    count()			count number of times a value appears in a List
+    repeat()		repeat a List multiple times
+    insert({list},{item} [,{idx}])
+    add({list}, {expr})
+    TODO:
+  
+
+#18. dictionary#
+--------------------------------------------------------------------------------
+                                                             *myhelp-dictionary* 
+  dictionary~
+    `:h Dictionary`  `:h dict`
+  literal-dictionary #{key:val,...,"no quotes for key" }~
+  e.g. let mydict = #{zero:0, 333:'text'}
+  dictionary function~
+    function Mylen() dict
+      return len(self.data)
+    endfunction
+    let mydict = { 'data':[0,1,2,3], 'len':function("Mylen")}
+    echo mydict.len()
+
+    TODO:
+
+
+
+#19. format lines#      
+--------------------------------------------------------------------------------
+                                                                *myhelp-format* 
+
+    gq{motion}
+    gq`ap`    motion=ap
+
+
+#20. options#      
+--------------------------------------------------------------------------------
+                                                                *myhelp-options* 
+
+  set option its default value &~
+    set option&
+
+  set realativenumber~
+    set nu | set relativenumber
+
+  modeline~
+    set modeline
+    set modelines
+
+  viminfo~
+    `:h` 'viminfo' `:h viminfo`
+    `:h viminfo-!`    note global variables
+    `:h viminfo-%`    note buffer list
+    `:h viminfo-f`    note marks
+    `:h viminfo-n`    note viminfo file name
+
+
+
+#21. completion#      
+--------------------------------------------------------------------------------
+                                                                *myhelp-completion* 
+    complete a file name ~
+    <C-X><C-F>
+    complete a line~
+    <C-X><C-L>
+
+
+#22. folding#      
+--------------------------------------------------------------------------------
+                                                                *myhelp-folding* 
+
+    using visual selection~
+    :[range]fold
+
+    using Markers~
+    :setlocal fdm=marker
+    "Test: __{{{__
+        func A()
+            echomsg ...
+        endfunc "__}}}__
+
+    using syntax~
+    :setlocal fdm=systax
+    `zM` close all foldings
+    `zR` open ALL foldings
+    `zc` close fold
+    `zo` open fold
+    [N]`zo` open  [N] fold
+    [N]`zc` close  [N] fold
+
+    vimscript(.vim)~
+    `:h g:vimsyn_folding`
+    Some folding is now supported with #syntax/vim.vim#:
+     g:vimsyn_folding == 0 or doesn't exist: no syntax-based folding
+     g:vimsyn_folding =~ 'a' : augroups
+     g:vimsyn_folding =~ 'f' : fold functions
+     g:vimsyn_folding =~ 'l' : fold lua      script
+     g:vimsyn_folding =~ 'm' : fold mzscheme script
+     g:vimsyn_folding =~ 'p' : fold perl     script
+     g:vimsyn_folding =~ 'P' : fold python   script
+     g:vimsyn_folding =~ 'r' : fold ruby     script
+     g:vimsyn_folding =~ 't' : fold tcl      script
+
+     e.g. 
+     let g:vimsyn_folding = 'af' 
+     WARNING   equal sign(=) NOT =~ 
+     note folding for autogroups and functions
+
+  foldmethod, foldexpr~
+  set fdm = expr
+  set fde=functionName()
+  e.g. set fde=SimpleFold#FoldExpr(v:lnum)    note v:lnum is line number(nr) for 'foldexpr'
+  highlight~
+    `:set foldcolumn=1`
+    `put = execute('verbose hi Folded')`
+    :hi Folded  term=bold,underline ctermfg=11 ctermbg=8 gui=bold,underline guifg=#839496 guibg=#073642
+    :hi FoldColumn
+
+
+#23. registers#      
+--------------------------------------------------------------------------------
+                                                                *myhelp-registers* 
+    `:h registers`
+
+    list registers~
+        `:reg`
+        `:reg a`
+        :put = execute('reg a')
+        --- Registers ---
+        "a   10
+
+    clear registers~
+        :let @a=''
+        :call setreg('a','')
+
+    retrieve contents of register with " ~
+      "{reg}p
+      CTRL-R {reg}
+      CTRL-R CTRL-R {reg}
+      note insert the contents of {reg}
+      CTRL-R CTRL-O {reg}
+      note insert the contents of {reg} literally, don't auto-indent
+      CTRL-R CTRL-P {reg}
+      note insert the contents of {reg} literally, fix the indent
+
+      e.g. where register a contains "abc"  
+      CTRL-R a		    results in "ac".
+      note to insert literally( is <BS>)
+      CTRL-R CTRL-P a		results in "abc".
+      note careful about <NL>
+      `:put = execute('reg a')`
+
+    record macro~
+      q{reg} .... q
+
+    execute macro~
+      [N]@{reg}
+      :[addr]@{reg}                 note set cursor at line [addr]
+      :{range} normal @{reg}
+      :g/{pattern}/ normal @{reg}
+
+    repeat macro~
+      @@
+      :[addr]@@
+      e.g. 
+      let @a='2jAEOL2k'
+      @a
+
+
+    change contents of register~
+        "{reg}y{motion}
+        "ayiW, "ay$, "ayt$~
+        3jixxx3k
+        note yank(yy) -> execute(@0) -> execute(@a)
+        myWarning without terminal keycode
+        :let @a=''          note clear reg a
+        :let @a='3jixx'
+        :let @a='3jixxx\<ESC>3k' 
+        :let @a="3jixxx\e3k" 
+        :@0 | reg 0a
+        note yank(yy) -> execute(:CTRL-R__0__) -> execute(@a)
+        myWarning with terminal keycode CTRL-V {CTRL-KEY}
+        :let @a='3jixxx3k'
+        :execute(@0)
+
+    let @{reg} = {expr}~
+        `:h :let-@`
+        if the result of {expr} ends in a <CR>() or <NL>(^J), <ESC>()
+        the register will be linewise, otherwise characterwise.
+
+    insert newline keycode ^J~
+        let @a="a\nb"
+        let @a="a" . "\n" . "b"
+        let @a="a" . "\x0a" . "b"
+
+    unnamed "~
+       Vim fills unnamed register with text deleted with "d","c","x","s" 
+       or copied with "y" commands.
+
+    named a-z(or A-Z to append a-z)~
+
+    numbered 0-9~
+        Vim fills registers 0-9 with text from yank and delete commands.
+        the most recent yank register "0
+    small delete(minus) -~
+
+    black hold(underscore) _~
+        "_{cmd}     "_100dd
+
+    last search /~
+
+    expression =~
+       <Ctrl-R>=3.14*2
+       `:put=3.14*2`
+       note expression must evaluate to a String.
+       `:let @= ='3.14*2'`
+       note insert content of expression reg
+       <Ctrl-R>=<CR>    -> 6.28
+       `:put=`
+
+    last ex-cmd  :~
+        repeat last ex-cmd with @:
+    last insert  .~
+    selection(clipboard) *,+~
+    drag and drop ~~
+    current file  %~
+    alternate file #~
+
+  Insert the object under the cursor~
+    <C-R><C-F> the Filename under the cursor
+    <C-R><C-P> the Filename under the cursor, expanded with 'path' as in |gf|
+    <C-R><C-W> the Word under the cursor
+    <C-R><C-A> the WORD under the cursor; see |WORD|
+    <C-R><C-L> the line under the cursor
+
+
+#24. redir#      
+--------------------------------------------------------------------------------
+                                                                *myhelp-redir* 
+  :redir[!] > {file}      :redir >> {file}
+  :redir  @{a-zA-Z}>      :redir @{a-z}>>
+  :redir => {var}         :redir =>> {var}
+  :redir END
+  note ! for overwriting anyway
+
+  how to capture ex-cmd into current buffer~
+  :redir @a | silent reg | redir END
+  `:reg a`
+  `:put a`
+  :redir >> % | silent registers | redir END | edit
+  :put=execute('reg')
+  :put=execute('ls')
+
+
+
+#25. mapping#      
+--------------------------------------------------------------------------------
+                                                                *myhelp-mapping* 
+
+    modes~
+      nmap
+      imap
+      smap    note select mode(useless mode, alike microsoft programs)
+      xmap    note visual mode ONLY
+      vmap    note visual and select mode BOTH
+      cmap    note commandline
+      omap
+
+    list mapping~
+      `:map`
+      `:nmap`
+      :verbose map ,w
+      e.g. :verbose map ,w
+      mode  |  map  |  noremap  | 
+      -------------------------------
+      n     |  ,w   |     *     | <C-W> 
+
+
+    mapping ALT keys~
+    map <A-b>  "make a character bold"
+
+
+
+
+
+#26. literal(single quote)#      `:h literal-string`      
+--------------------------------------------------------------------------------
+                                                                *myhelp-literal* 
+    backslashes do not have special meaning('escape sequence')
+
+    '\s'  == "\\s"~
+      `:echomsg "\s"`     note s
+      `:echomsg "\\s"`    note \s
+      `:echomsg '\s'`     note \s
+      `:echomsg '\\s'`    note \\s
+
+#27. plugins#      
+--------------------------------------------------------------------------------
+                                                                *myhelp-plugins* 
+  ✓ netrw~
+    `:vs.`  vsplit  for cwd
+    `:V`e   vsplit  for current file directory
+    `%`     create new __f__ile
+    `d`     create new __d__ir
+    `R`     __r__ename
+    `D`     __d__elete
+  pathogen~
+    :git clone URL
+  exuberent ctags~
+    set envionmental variable using pathman.exe from https://git.rootprojects.org/root/pathman
+
+
+    
+#28. expression#      `:h expression-syntax` 
+--------------------------------------------------------------------------------
+                                                             *myhelp-expression* 
+    regexp matches~
+    expr1 =~ expr2    regex matches
+    expr1 !~ expr2    regex does not match
+
+    string concatenation~
+    expr1 . expr2
+
+
+
+
+#29. python-vim#      `:h python-vim` 
+--------------------------------------------------------------------------------
+                                                             *myhelp-python-vim* 
+    vim.eval(str) ~
+    vim.command(ex-cmd str) ~
+
+
+#30. RegEx#      `:h regex` 
+--------------------------------------------------------------------------------
+                                                                   *myhelp-RegEx* 
+  match cursor~
+    \%	cursor position |/zero-width|
+  match column~
+    \%23__c__   column 23 |/zero-width|    note see also :match :2match :3match
+  match virtual column~
+    \%23v	  virtual column 23
+    \%<23v	before virtual column 23
+    \%>23v	after virtual column 23
+  match line~
+    \%23__l__   matches line 23
+  match mark~
+    \%'__m__    mark __m__ 
+  match start-of-line, end-of-line~
+    /^,  /$
+  look behild \@<=~
+    note matches with zero width if the preceding atom matches
+	  note Like "(?<=pattern)" in Perl, but Vim allows non-fixed-width patterns.
+	 e.g.	search "pattern" after "lookbehind"
+     `\(lookbehind)\@<=pattern`
+
+   match anything~
+   /.*/     anything but EOL($)     
+   /\_.*/   anything to the end of file(EOF)
+   /\_.*END/ anything including the last "END" in the file
+
+#31. syntax#      `:h syntax` 
+--------------------------------------------------------------------------------
+                                                                   *myhelp-syntax* 
+  using syntax highlighting      `:h usr_06.txt`
+  writing syntax file            `:h usr_44.txt`
+  all the details                `:h syntax.txt`
+  adding to an existing syntax file		`:h mysyntaxfile`
+
+  set filetype = my~
+  ~/.vim/syntax/my.vim
+
+  set filetype = x~
+  ~/.vim/syntax/x.vim
+
+  colorscheme~
+    `hi Group term cterm ctermfg ctermbg gui guifg guibg`
+    `term`:   Black&White terminal
+    `cterm`:  Color terminal
+    `gui`:    GUI
+
+  syntax clear~
+    `:syntax clear`
+
+  listing defined items~
+    `:syntax`
+    `:syntax GroupName`
+
+  matching case~
+    `:syntax case match`    note case-sensitive
+    `:syntax case ignore`   note case-insensitive
+
+  syntax keyword~
+    :syntax keyword {group} {keyword} ...
+    :syntax keyword xType int long char
+    :syntax keyword xStatement if then else endif
+
+  hi link~
+    `:hi link xType Type`
+    `:hi link xStatement Statement`
+
+  unusual keywords~
+    note the characters used in a keyword must be in the 'iskeyword' option.
+    `:setlocal iskeyword+=-`
+    `:syntax keyword xStatement when-not`
+
+  allow for abbreviations~
+    `:syntax keyword xStatement n[ext]`
+
+  syntax match~
+    :syntax match GroupName /{pattern}/
+    `:syntax match xIndentifier /\<\l\+\>/`     
+    note \l : lowercase word 
+    note :syntax keyword overrule any other syntax item
+    note the keyword "if","then",... will be keyword even though 
+    note they match the pattern for xIndentifier
+    `:syntax match xComment /#.*/`
+
+  syntax region~
+    :syntax region start=/{pattern}/ end={pattern}
+    :syntax region start=/{pattern}/ skip=/{pattern}/ end={pattern}
+    `:syntax region xString start=/"/ end=/"/`
+    `:syntax region xString start=/"/ skip=/\\"/ end=/"/`
+    e.g. "A string with a double quote (\") in it"~
+
+  syntax ... contains=GroupName~
+  syntax ... contained~
+    note "contained" tells Vim that this keyword can exist __ONLY__ __inside__ another syntax items.
+    `:syntax keyword xTodo Todo contained`
+    `:syntax match xComment /%.*/ containes=xTodo`
+    e.g. %Get input TODO: skip white space~
+
+  recursive contains~
+    `:syntax region xBlock start=/{/ end=/}/ contains=xBlock`
+    e.g. 
+      while i<10 {~
+        if a > b { ~
+          b = c;~
+        }~
+      }~
+
+  syntax ... keepend~
+    `:syntax region xComment start=/%/ end=/$/ contained`
+    `:syntax region xPreProc start=/#/ end=/$/ containes=xComment`
+    note to avoid a contained syntax item eating a needed <EOL>,
+    note use the "keepend" argument.
+    `:syntax region xPreProc start=/#/ end=/$/ contains=xComment keepend`
+    e.g.
+    #define X = Y   % Comment text~
+    int foo = 1~
+
+  syntax ... contains=ALL~
+    `:syntax region xList start=/\[/ end=/\]/ contains=ALL`
+    note All items will be contained in this one
+    note It also contains __itself__
+
+  syntax ... contains=ALLBUT,xString~
+    `:syntax region xList start=/\[/ end=/\]/ contains=ALLBUT,xString`
+
+  syntax ... skipwhite~
+  note "skipwhite" argument tells vim that white space may appear in between items.
+  syntax ... skipnl~
+  note "skipnl" allows a line break <NL> in between items
+  note "skipnl" does not skip an empty line, something must match after the line break.
+  syntax ... skipempty~
+  note "skipempty" allows empty lines
+
+  syntax ... nextgroup=GroupName~
+    note "nextgroup" argument specifies which item can come next
+    if (condition) then~
+    note hightlight the three items differently,
+    note but "(condition)" and "then" might also appear in other places, where they get
+         different highlighting.
+    :syntax match __xIf__ /if/ __nextgroup__=xIfCondition __skipwhite__
+    :syntax match __XIfCondition__ /([^)]*)/ contained nextgroup=xThen skipwhite
+    :syntax match __xThen__ /then/ contained
+    if not (condition) then~
+    note this does not work
+
+  syntax ... matchgroup=GroupName~
+    :syntax region xInside start=/(/ end=/)/
+    note to highlight the __parentheses__ __differently__
+    :syntax region xInside matchgroup=xParen start=/(/ end=/)/
+    :syntax region xInside matchgroup=xParentStart start=/(/
+                          \ matchgroup=xParentEnd  end=/)/
+    note A side effect of "matchgroup" is contained items will not match in the start or 
+         end of the region.
+
+  syntax ... transparent~
+    `:h syn-transparent`
+    note if "transparent" is given, the item will NOT be highlighted itself,
+    note but will take the highlighting of the item it is contained in.
+    note this is useful for syntax items that don't need any hightlighting,
+    note but are used ONLY to SKIP OVER a part of the text.
+    note "contains" is also inherited from the item it is contained in,
+    note unless a "contains" is given for the transparent item itself.
+    note to avoid that unwanted items are contained, use "contains=NONE"
+
+    e.g. highlights words in strings, but makes an __exception__ for "vim":
+      :syntax match myString /'[^']*'/ contains=myWord, myVim
+      :syntax match myWord   /\<[a-z]*\>/ contained
+      :syntax match myVim    /\<vim\>/ transparent contained containes=NONE
+      :hi link myString String
+      :hi link myWord   Comment
+
+  offsets~
+    :syntax region xCond start=/if\s*(/ms=e+1 end=/)/ms=s-1
+    note define a region for the text between ( and ) after an "if"
+    note but not include "if" or "(" or ")"
+    note __ms__ stands for __M__atch __S__tart, __me__ for __M__atch __E__nd
+    if (#foo=bar#)
+
+  syntax region ... oneline~
+    :syntax region xIfThen start=/if/ end=/then/ oneline
+    note it matches in the __same__ __line__
+    note without "oneline", Vim does not check if there is a match for
+         the end pattern. 
+    note the region starts even when the end pattern does not match
+         in the rest of the file.
+
+  continuation lines~
+    :syntax region xPreProc start=/^#/ end=/$/ contains=xLineContinue
+    :syntax match xLineContinue "\\$" contained
+
+    #define SPAM spam spam __\__
+            BACON bacon bacon
+
+  syntax match ... excludenl~
+    :syntax region xPreProc start=/^#/ end=/$/ contains=xLineContinue, xPreProcEnd
+    :syntax match xPreProcEnd excludenl /end$/ contained
+    :syntax match xLineContinue "\\$" contained
+
+    note without #excludenl# xPreProc continues after `end` becase `/end$/` eats <NL>
+    #define X = Y __end__
+      xPreProc continue it's like line-continue('\')
+
+  syntax cluster Gropu contains=...~
+    note define #a collection of syntax groups# called a cluster
+    :syntax __cluster__ xState __contains__=xNumber,xIdent
+    :syntax match xFor /^for.*/ contains=__@__xState
+    :syntax match xFor /^it.*/ contains=__@__xState
+    :syntax match xFor /^while.*/ contains=__@__xState
+
+  syntax cluster Group add=...~
+    :syntax __cluster__ xState __add__=xString
+
+  syntax cluster Group remove=...~
+    :syntax __cluster__ xState __remove__=xNumber
+
+  including another syntax file~
+    :runtime! syntax/c.vim
+    note "runtime!" command searches 'runtimepath' for all "syntax/c.vim" files.
+    note this makes the C parts of the C++ syntax be defined like for C files.
+
+  syntax include @Pod <sfile>:p:h/pod.vim~
+    "syntax include" reads in a syntax file and stores the elements it defined
+    in a cluster.
+    :syntax include @Pod <sfile>:p:h/pod.vim
+    :syntax region perlPOD stat=/^=head/ end=/^=cut/ contains=@Pod
+
+  syntax sync ...~
+
+  install syntax file~
+
+  adding to an existing syntax file~
+    ~/.vim/after/syntax/c.vim
+
+  digraph~
+  <ctrl-k>{char1}{char2}
+  *2 -> ★
+  *1 -> ☆ 
+  cC -> ♣
+  MX -> ♯
+  OK -> ✓
+
+✓ menu~
+  list all menu~
+    :menu
+  list menu for popup~
+    :menu Popup
+  disable default menu~
+      :set guioptions=M
+  delete menu~
+    :source $VIMRUNTIME/delmenu.vim
+  ♯ set langauge for menu~
+    :set langmenu=en
+  source menu.vim~
+    :source $VIMRUNTIME/menu.vim
+
+
+✓ popup menu~
+  - create PopUp menu
+    :amenu PopUp.{MenuName} {NormalCommand}
+  e.g. 
+  :amenu PopUP.Listallmenus :menu PopUp
+  :amenu PopUP.List\ menus :menu PopUp<CR>
+  :amenu PopUP.ls\ buffer :lsCR>
+  amenu PopUP.ls :lsCR>
+  delete menu~
+  :aunmenu *
+
+encrytion key(password)~
+:X
+
+:terminal~
+:vert ter
+:tab ter
+
+
+ vim: set et ts=2 sw=2 sts=2 ft=help textwidth=0:

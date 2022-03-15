@@ -1,0 +1,42 @@
+I always forget the following stuff.
+paste before or after~
+    "{reg}p     note paste __before__ cursor
+    "{reg}P     note paste __after__ cursor
+    e.g. "__+__p  or "__0__p
+i_ctrl-R{reg}~
+    e.g. i_C-R"
+c_ctrl-R{reg}~
+    e.g.  c_C-R__"__
+c_C-R<cword> <C-R><C-W>
+c_C-R<cLine> <C-R><C-L>
+<C-W>gf~
+    __g__o __f__ile in __w__indow
+<C-W>T~
+    convert to __t__ab
+gT~
+    go to previous __t__ab
+gI~
+    Insert at column __0__  note same as 0i
+gi  __g__o __i__nserted position
+yank~
+    ["reg]y{motion}  e.g. "__+__y2w  word1 word2  -> copy two words into selection {reg}__+__
+                     e.g. y2e    word1 word2  -> copy two words into unamed {reg}__"__
+q:~
+    open cmdline window from normal
+:<C-F>~
+    open cmdline window     note <CR> to close cmdline window
+"%~
+    current file name reg  e.g. :reg % ,  `:echomsg @%`
+":~
+    cmdline reg     e.g. :reg :  or `:echomsg @:`
+"*~
+    clipboard reg   e.g. :reg *
+"/~
+    last search reg
+"=~
+    expression reg
+".~
+    last insert reg 
+
+
+ vim: set et ts=2 sw=2 sts=2 ft=help textwidth=0:

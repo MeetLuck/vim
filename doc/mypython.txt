@@ -1,0 +1,83 @@
+*mypython.txt*		For Vim version 8.0.			Last change: 2017 Mar 19
+
+		  #Personal Python 3 Help Menual#  by Author Meetluck
+
+
+
+Table Of Contents~
+================================================================================
+                                                                         *mypython*
+1. windows path...................................................|mypython-windowspath|
+
+
+#1. windows path#
+--------------------------------------------------------------------------------
+                                                                  *mypython-windowspath* 
+  `>>> path = 'C:\Users'`
+  note slash('\') cause problem such as unicodeescape blabla...
+  `>>>path = r'' + path`
+  `>>>path = path.replace('\\',r'\\')`
+
+#2. windows enviroment variables#
+--------------------------------------------------------------------------------
+                                                                  *mypython-windowsenv* 
+  >>> os.environ
+  >>> os.environ['APPDATA']     --> 'c:\ProgramData'
+  >>> for key,value os.environ.items():
+  >>> print key,value
+
+
+#3. os.path#
+--------------------------------------------------------------------------------
+                                                                  *mypython-os.path* 
+>>> dir()
+    [ __name __, __file __]
+>>> __file __
+    'C:\\Users\\username\\filename'
+>>> os.path.abspath(__file __)    myWarning   NOT '__file __'
+>>> os.path.dirname(__file __)    myWarning   NOT __file __ is 'object'
+>>> dirname = os.path.dirname( os.path.abspath('__file __'))
+>>> filepath = os.path.join(dirname,'filename')
+
+
+#3.type(classname,superclass,attributedict)#
+--------------------------------------------------------------------------------
+                                                                  *mypython-type* 
+create class on the fly by type functions~
+  >>> cls_fly = type('Fly',(),{'color':[1,2,3],'speed':12})
+  >>> cls_fly
+  <class '__main __.Fly'>
+  >>> cls_fly.color
+  [1, 2, 3]
+  >>> cls_fly.speed
+  12
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vim: set et ts=2 sw=2 sts=2 ft=help textwidth=0:

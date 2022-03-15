@@ -1,0 +1,123 @@
+*myandroid.txt*     For Android studio 3.5.3        Last change: 2020 January 16
+
+    # Android Studop Help Manual# by Author Meetluck
+
+
+
+Table Of Contents~
+================================================================================
+                                                                         *myandroid*
+ structure....................................................|myandroid-structure|
+ life cycle...................................................|myandroid-lifecycle|
+ logcat.......................................................|myandroid-logcat|
+ color.......................................................|myandroid-color|
+
+
+
+
+
+#0. scheme#
+--------------------------------------------------------------------------------
+                                                                  *myhelp-scheme* 
+
+    GUI Theme~
+        ctrl+alt+S : Material Theme UI
+    Edit Scheme~
+        ChroMATERIAL
+    Holo Logcat~
+        save as ChroMATERIAL + HOLO
+        verbose:    #BBB       `Log.v()`
+        debug:      #33B5E5    `Log.d()`      
+        info:       #9C0       `Log.i()`
+        assert:     #A6C       `Log.a()`
+        error:      #F44       `Log.e()`
+        warning:    #FB3       `Log.w()`
+
+#1. structure#
+--------------------------------------------------------------------------------
+                                                                  *myhelp-structure* 
+    manifests~
+        AndroidManifest.xml
+    activity~
+        MainActivity.java
+    layout~
+        activity_main.xml
+    resource~
+        string.xml
+
+
+
+
+#2. Life Cycle#
+--------------------------------------------------------------------------------
+                                                                  *myandroid-lifecycle* 
+
+    onCreate~
+        called when activity is FIRST created
+    onStart~
+        called when activity is __VISIBLE__ to the user
+    onResume~
+        called when activity will start __INTERACTING__ with the user
+    onPause~
+        called when activity is __NOT__ __VISIBLE__ to the user
+    onStop~
+        called when activity is NO LONGER VISIBLE to the user
+    onRestart~
+        called after the activity is STOPPED, prior to start
+    onDestroy~
+        called before the activity is DESTROYED
+
+
+
+
+#3. logcat#
+--------------------------------------------------------------------------------
+                                                                  *myandroid-logcat* 
+
+   `Log.i(string,string)`
+       __i__nformation
+   `Log.d(string,string)`
+       __d__ebug
+   `Log.e(string,string)`
+       __e__rror
+   `Log.w(string,string)`
+       __w__arning
+   `Log.v(string,string)`
+       __v__erbose
+
+
+
+#4. color#
+--------------------------------------------------------------------------------
+                                                                  *myandroid-color* 
+    note `colors.xml`
+    @color/white~
+        `<color name="white">#FFFFFF</color>`
+    @android:color/black~
+
+#4. android studio#
+--------------------------------------------------------------------------------
+                                                                  *myandroid-studio* 
+    File-Project Structure~
+        SDK Location
+        JDK Location 
+    help-intellij IDEA Default Keymap~
+    quick fixes~
+        <Alt_Enter>
+    Organize Imports~
+        <Alt_Ctrl_O>
+    Rename~
+        <Shift_F6>
+    Override method~
+        <Ctl_O>
+    Implement method~
+        <Ctrl_I>
+    Quick Documentation Lookup~
+        <F1>
+    Parameter Info~
+        <Ctrl_P>
+    Go to declation~
+        <Ctrl_B>
+    Search Everywhere~
+        <Shift_Shift>
+

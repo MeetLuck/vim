@@ -1,0 +1,73 @@
+This is my buffer file.
+
+#Buffer-local autocommands#     `:h autocmd-buflocal`
+    <buffer> current buffer
+
+autocmd! * mybuffer
+autocmd! * <buffer>
+autocmd WinLeave mybuffer :echomsg "...WinLeave mybuffer"
+autocmd WinLeave <buffer>  :echomsg "...WinLeave <buffer"
+autocmd BufLeave mybuffer :echomsg "...BufLeave mybuffer"
+autocmd BufWinLeave mybuffer :echomsg "...BufWinLeave mybuffer"
+
+
+redir @a | silent messages | redir END
+put = @a
+
+
+
+synario One~
+=======================================================================================
+
+
+    +---------------------------+               +---------------------------+
+    |                           |               |                           |
+    |                           |     ===>      |                           |
+    |winnr<1> *mybuffer         |               |winnr<1> *notmybuffer      |
+    +---------------------------+               +---------------------------+
+
+`:edit notmybuffer`
+
+
+Messages maintainer: Bram Moolenaar <Bram@vim.org>
+-------------------------------------------------------------------------------
+...<BufLeave> mybuffer              note VIM Leave mybuffer entering another buffer
+...<BufWinLeave> mybuffer           note VIM Leave mybuffer's ALL window
+
+
+
+synario Two ~
+=======================================================================================
+    +---------------------------+               +---------------------------+
+    |                           |               |winnr<2> *notmybuffer      |
+    |                           |     ===>      |-------------------------- |
+    |winnr<1> *mybuffer         |               |mybuffer                   |
+    +---------------------------+               +---------------------------+
+
+`:split notmybuffer`
+
+Messages maintainer: Bram Moolenaar <Bram@vim.org>
+-------------------------------------------------------------------------------
+...<WinLeave> mybuffer          note VIM Leave mybuffer's window<1>
+...<WinLeave> <buffer>          note VIM Leave <buffer>'s window<1>
+...<BufLeave> mybuffer          note VIM Leave mybuffer entering another buffer
+
+
+
+synario Three~
+=======================================================================================
+    +---------------------------+               +---------------------------+
+    |                           |               |winnr<2> *mybuffer         |
+    |                           |     ===>      |-------------------------- |
+    |winnr<1> *mybuffer         |               |winnr<1> mybuffer          |
+    +---------------------------+               +---------------------------+
+
+`:split`
+
+
+Messages maintainer: Bram Moolenaar <Bram@vim.org>
+-------------------------------------------------------------------------------
+...<WinLeave> mybuffer           note VIM Leave mybuffer's window<1>
+...<WinLeave> <buffer>           note VIM Leave <buffer>'s window<1>
+
+

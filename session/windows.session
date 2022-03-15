@@ -1,0 +1,373 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd C:\windows10\ setupguide
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+argglobal
+%argdel
+set stal=2
+tabnew
+tabrewind
+edit C:\windows10\ setupguide\windows10tips.txt
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 96 - ((14 * winheight(0) + 17) / 35)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+96
+normal! 0
+tabnext
+edit ~\.vim\doc\myhelp.txt
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 1774 - ((34 * winheight(0) + 17) / 35)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1774
+normal! 0
+tabnext 1
+set stal=1
+badd +1 ~\.vimshortcut
+badd +1 ~\AppData\Local\wsltty\Ubuntu-20.04.bat
+badd +1 ~\.vim\vimrc_statusline.vim
+badd +1282 ~\.vim\doc\myhelp.txt
+badd +0 C:\windows10\ setupguide\windows10tips.txt
+badd +37 ~\AppData\Local\Vivaldi\User\ Data\Default\Bookmarks
+badd +1 ~\stocks\dow.wave
+badd +135 ~\stocks\kospi.wave
+badd +1 C:\Users\meetluck\`0
+badd +1 ~\Documents\cmdline.cmd
+badd +1 ~\.vim\doc\test.my
+badd +1 ~\.vim\Documents\cmdline.cmd
+badd +1 ~\start\ C:\Users\meetluck\Documents\cmdline.cmd
+badd +1 ~\.vim\vimrc_helper.vim
+badd +28 ~\_vimrc
+badd +1 ~\.vim\vimrc_options.vim
+badd +1 ~\.vim\plugged\fzf.vim\plugin\fzf.vim
+badd +1 ~\.vim\plugged\fzf\plugin\fzf.vim
+badd +1 ~\.vim\plugged\fzf\doc\fzf.txt
+badd +1 ~\.vim\plugged\fzf.vim\autoload\fzf\vim.vim
+badd +1 C:\Program\ Files\Vim\vim82\doc\eval.txt
+badd +1 ~\.vim\restorescreen.vim
+badd +1 D:\Applications\Keypirinha\default\App\Keypirinha.ini
+badd +1 D:\Applications\Keypirinha\portable\Profile\User\Keypirinha.ini
+badd +1 D:\Applications\mykeypirinha\Apps\apps.py
+badd +1 D:\Applications\PythonLib\src\keypirinha.py
+badd +1 D:\Applications\mykeypirinha\Env\env.py
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTopIO.gadget\gadget.xml
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myDigitalClock.gadget\js\gadget.js
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myDigitalClock.gadget\css\gadget.css
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myDigitalClock.gadget\content.html
+badd +1 D:\Applications\Keypirinha\portable\Local\ConfigEdit\Packages\Apps\apps.ini
+badd +1 D:\Applications\Keypirinha\portable\Profile\User\apps.ini
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime.gadget\content.html
+badd +1 D:\Applications\mykeypirinha\ShowTime\showtime.py
+badd +1 D:\Applications\Keypirinha\portable\Local\ConfigEdit\Packages\FilesCatalog\filescatalog.ini
+badd +1 D:\Applications\Keypirinha\portable\Profile\User\filescatalog.ini
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime.gadget\js\gadget.js
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\Teatime.gadget\teatime.html
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTeatime.gadget\timer.js
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTeatime.gadget\gadget.xml
+badd +11 C:\Program\ Files\Windows\ Sidebar\Gadgets\MyWeather2.gadget\gadget.html
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\MyWeather2.gadget\gadget.xml
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\MyWeather2.gadget\js\gadget.js
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\MyWeather2.gadget\css\style.css
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\Teatime.gadget\teatime.js
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\Teatime.gadget\timer.js
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\gadget.xml
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\js\myhud.js
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\js\
+badd +1 ~\
+badd +36 ~\.vim\after\colors\solarized.vim
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\js\gadget.js
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\content.html
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\css\myhud.css
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\css\gadget.css
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\css\settings.css
+badd +1 A:\gadgets\ download\TopProcess\TopProcess.js
+badd +1 A:\gadgets\ download\TopProcess\TopProcess.html
+badd +1 A:\gadgets\ download\TopProcess\TopProcess.css
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime.gadget\css\gadget.css
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime.gadget\settings.html
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTopIO.gadget\TopProcess.html
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTopIO.gadget\TopProcess.css
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTopIO.gadget\TopProcess.js
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTopIO.gadget\
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime.gadget\js\console.log.js
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime.gadget\js\localization.js
+badd +1 D:\Applications\mykeypirinha\keypirinha-myip\src\myip.py
+badd +1 D:\Applications\PythonLib\src\keypirinha_wintypes.py
+badd +1 D:\Applications\PythonLib\src\keypirinha_util.py
+badd +1 D:\Applications\PythonLib\src\keypirinha_net.py
+badd +1 D:\Applications\PythonLib\src\comtypes\__init__.py
+badd +1 D:\Applications\Keypirinha\portable\Profile\Packages\Env\env.py
+badd +1 D:\Applications\mykeypirinha\Keypirinha-Command\src\command.py
+badd +1 ~\.vim\doc\learn_python3_x_in_y_minutes.py
+badd +1 D:\Applications\mykeypirinha\ShowTime\showtime.ini
+badd +1 ~\.vim\bundle\vim-vinegar\plugin\vinegar.vim
+badd +1 ~\.vim\myplugin\myStartup20.vim
+badd +1 ~\.vim\myplugin\myStartup19.vim
+badd +1 ~\.vim\myplugin\myStartup18.vim
+badd +10 ~\.vim\autoload\mywindow.vim
+badd +1 ~\stockswave1ofABC.wave
+badd +1 ~\AppDataRoamingwslttyconfig
+badd +1 ~\.vimaftercolorssolarized.vim
+badd +1 ~\.vimvimrc_options.vim
+badd +1 ~\.vimsyntaxwave.vim
+badd +1 ~\stocksfib.py
+badd +1 ~\stockskospi.wave
+badd +1 ~\.vimmypluginmyStartup11.vim
+badd +1 ~\.vimmypluginmyFind13.vim
+badd +1 ~\.vimmypluginmyExplorer24.vim
+badd +1 ~\.vimautoloadmywindow.vim
+badd +1 ~\.vimmypluginmyExplorer22.vim
+badd +1 ~\.vimmypluginmyExplorer21.vim
+badd +1 ~\.vimmypluginaa
+badd +1 ~\.vimvimrc_helper.vim
+badd +1 ~\.vimrestorescreen.vim
+badd +1 ~\.vimvimrc_statusline.vim
+badd +1 ~\.vimmypluginmyStartup19.vim
+badd +1 ~\.vimmyplugin
+badd +1 ~\.vimmypluginSearchWN10.vim
+badd +1 ~\.vimmypluginSearchWordNet12.vim
+badd +1 ~\.vimmypluginOldFiles10.vim
+badd +1 ~\.vimdoc
+badd +1 ~\.vimmypluginmyPopUpMenu10.vim
+badd +1 ~\.vimmypluginforgetmenot.txt
+badd +1 ~\.vimpluginforgetmenot.txt
+badd +1 ~\.vimvimrc_mapping.vim
+badd +1 ~\.vimmyIDE.session
+badd +1 ~\.vimmypluginmyExplorer11.vim
+badd +1 ~\.vimaftersyntaxhelp.vim
+badd +1 ~\.vimmypluginwordnetpluginwordnet.vim
+badd +1 ~\.vimdownload_pluginsvim-startifyautoloadstartify.vim
+badd +1 ~\.vimdownload_pluginsvim-startifypluginstartify.vim
+badd +1 ~\.vimmypluginmyExplorer10.vim
+badd +1 ~\.vimmypluginmyStartup10.vim
+badd +1 ~\.vimdownload_pluginstlib_vimsamplestlibinputtlib_input_list.vim
+badd +1 ~\.vimsyntaxmysession.vim
+badd +1 ~\.vimsyntaxBufEx.vim
+badd +1 ~\.vimsessionstartup.session
+badd +1 ~\.vimautoloadmylib.vim
+badd +1 ~\.vimsyntaxstartup.vim
+badd +1 ~\C:nProgram\ Files\ (x86)Vimvim81docoptions.txt
+badd +1 ~\.vimdownload_pluginstlib_vimautoloadtlibfile.vim
+badd +1 ~\D:VHDwindows7Settinggvim.settings.txt
+badd +1 ~\C:nProgram\ Files\ (x86)Vimvim81doceval.txt
+badd +1 ~\C:nProgram\ Files\ (x86)Vimvim81syntaxhelp.vim
+badd +1 ~\.vimpluginmyPopUpMenu10.vim
+badd +1 ~\.vimautoloadpopup_terminal.vim
+badd +1 ~\.vimautoload__Tagbar__.3
+badd +1 ~\A:nProgram\ FilesVimvim82docterminal.txt
+badd +1 ~\.vimmypluginmarksplit.vim
+badd +1 ~\.vimsyntaxbuf.vim
+badd +1 ~\.vimsyntaxx.vim
+badd +1 ~\.vimsyntaxmypopup.vim
+badd +1 ~\.vimsyntaxmy.vim
+badd +1 ~\.vimsyntaxtest.mark
+badd +1 ~\.vimdocmyRegEx.txt
+badd +1 ~\A:nProgram\ FilesVimvim82docusr_27.txt
+badd +1 ~\.vimdocmyshell.txt
+badd +1 ~\.vimsyntaxmark.vim
+badd +1 ~\.vimaftersyntax\
+badd +1 ~\.vimsyntaxbuf
+badd +1 ~\.vimsyntaxpopup.vim
+badd +1 ~\A:nProgram\ FilesVimvim82syntaxhelp.vim
+badd +1 ~\A:nProgram\ FilesVimvim82docsyntax.txt
+badd +1 ~\.vimvimrc_cursor.vim
+badd +1 ~\.vimvimrc_complete.vim
+badd +1 ~\stocks1
+badd +1 ~\.vimmypluginmyFind10.vim
+badd +1 ~\.vimpluginmyPopUpMenu11.vim
+badd +1 ~\.vimmypluginmyPopUpMenu11.vim
+badd +1 ~\.vimmypluginmyFind11.vim
+badd +1 ~\C:Program\ FilesVimvim82doctagsrch.txt
+badd +1 ~\.vimmypluginmyFind12.vim
+badd +1 ~\A:nProgram\ FilesVimvim82docpattern.txt
+badd +1 ~\A:nProgram\ FilesVimvim82doceval.txt
+badd +1 ~\.vimmyplugin__Tagbar__.3
+badd +1 ~\LaunchyUtilitieselevateREADME.md
+badd +1 ~\C:windows10\ setupguidetest.md
+badd +1 ~\stocksdow.wave
+badd +1 ~\stockselliot.txt
+badd +1 ~\test.vim
+badd +1 ~\A:nProgram\ FilesVimvim82docmap.txt
+badd +1 ~\.vimdocregex.test
+badd +1 ~\.vimdocmyPCRE.txt
+badd +1 ~\A:nProgram\ FilesVimvim82syntaxvim.vim
+badd +1 ~\.vimvimrc_function.vim
+badd +1 ~\A:nProgram\ FilesVimvim82docpi_netrw.txt
+badd +1 ~\stockselliot\ Wave.txt
+badd +1 ~\.vimdocmycook.txt
+badd +1 ~\.vimdoccook.txt
+badd +1 ~\.vimdocmyhelp.txt
+badd +1 ~\C:windows10\ setupguidewindows10setup.txt
+badd +1 ~\C:windows10\ setupguidewindows10tips.txt
+badd +1 ~\C:windows10\ setupguidetest.mk
+badd +1 ~\C:windows10\ setupguidet.md
+badd +1 ~\C:windows10\ setupguidewindows10setup.markdown
+badd +1 ~\C:windows10\ setupguidewindows10tips.markdown
+badd +1 ~\.vimmypluginmyStartup16.vim
+badd +1 ~\.vimcolorssolarized.vim
+badd +1 ~\.vimmypluginmyStartup17.vim
+badd +1 ~\.vimmypluginmyStartup18.vim
+badd +1 ~\.vimmypluginmyExplorer23.vim
+badd +1 ~\.vimdocmyhelp.old
+badd +1 ~\.vimmyplugin__Tagbar__.2
+badd +1 ~\C:Program\ FilesVimvim82docoptions.txt
+badd +1 ~\C:Program\ FilesVimvim82docinsert.txt
+badd +28 ~\stocks\wave1ofABC.wave
+badd +1 ~\.vim\
+badd +1 C:\Program\ Files\Vim\vim82\doc\map.txt
+badd +1 ~\.vim\bundle\vim-vinegar\doc\vinegar.txt
+badd +1 ~\.vim\bundle\vim-vinegar\doc\
+badd +1 ~\.vim\bundle\vim-vinegar\plugin\
+badd +1 ~\.vim\stocks\dow.wave
+badd +1 ~\.vim\stocks\kospi.wave
+badd +33 ~\.vim\doc\mycook.txt
+badd +1 ~\.vim\doc\myshell.txt
+badd +2 ~\AppData\Roaming\wsltty\config
+badd +39 ~\.vim\syntax\wave.vim
+badd +40 ~\stocks\fib.py
+badd +1 ~\.vim\myplugin\myStartup11.vim
+badd +1 ~\.vim\myplugin\myFind13.vim
+badd +1 ~\.vim\myplugin\myExplorer24.vim
+badd +1 ~\.vim\myplugin\myExplorer22.vim
+badd +1 ~\.vim\myplugin\myExplorer21.vim
+badd +1 ~\.vim\myplugin\aa
+badd +1 ~\.vim\myplugin
+badd +1 ~\.vim\myplugin\SearchWN10.vim
+badd +1 ~\.vim\myplugin\SearchWordNet12.vim
+badd +1 ~\.vim\myplugin\OldFiles10.vim
+badd +1 ~\.vim\doc
+badd +1 ~\.vim\myplugin\myPopUpMenu10.vim
+badd +1 ~\.vim\myplugin\forgetmenot.txt
+badd +1 ~\.vim\plugin\forgetmenot.txt
+badd +1 ~\.vim\vimrc_mapping.vim
+badd +1 ~\.vim\myIDE.session
+badd +1 ~\.vim\myplugin\myExplorer11.vim
+badd +1 ~\.vim\after\syntax\help.vim
+badd +1 ~\.vim\myplugin\wordnet\plugin\wordnet.vim
+badd +1 ~\.vim\download_plugins\vim-startify\autoload\startify.vim
+badd +1 ~\.vim\download_plugins\vim-startify\plugin\startify.vim
+badd +1 ~\.vim\myplugin\myExplorer10.vim
+badd +1 ~\.vim\myplugin\myStartup10.vim
+badd +1 ~\.vim\download_plugins\tlib_vim\samples\tlib\input\tlib_input_list.vim
+badd +1 ~\.vim\syntax\mysession.vim
+badd +1 ~\.vim\syntax\BufEx.vim
+badd +1 ~\.vim\session\startup.session
+badd +1 ~\.vim\autoload\mylib.vim
+badd +1 ~\.vim\syntax\startup.vim
+badd +1 C:\nProgram\ Files\ (x86)\Vim\vim81\doc\options.txt
+badd +1 ~\.vim\download_plugins\tlib_vim\autoload\tlib\file.vim
+badd +1 D:\VHD\windows7Setting\gvim.settings.txt
+badd +1 C:\nProgram\ Files\ (x86)\Vim\vim81\doc\eval.txt
+badd +1 C:\nProgram\ Files\ (x86)\Vim\vim81\syntax\help.vim
+badd +1 ~\.vim\plugin\myPopUpMenu10.vim
+badd +1 ~\.vim\autoload\popup_terminal.vim
+badd +1 ~\.vim\autoload\__Tagbar__.3
+badd +1 A:\nProgram\ Files\Vim\vim82\doc\terminal.txt
+badd +1 ~\.vim\myplugin\marksplit.vim
+badd +1 ~\.vim\syntax\buf.vim
+badd +1 ~\.vim\syntax\x.vim
+badd +1 ~\.vim\syntax\mypopup.vim
+badd +1 ~\.vim\syntax\my.vim
+badd +1 ~\.vim\syntax\test.mark
+badd +175 ~\.vim\doc\myRegEx.txt
+badd +1 A:\nProgram\ Files\Vim\vim82\doc\usr_27.txt
+badd +1 ~\.vim\syntax\mark.vim
+badd +1 ~\.vim\after\syntax\
+badd +1 ~\.vim\syntax\buf
+badd +1 ~\.vim\syntax\popup.vim
+badd +1 A:\nProgram\ Files\Vim\vim82\syntax\help.vim
+badd +1 A:\nProgram\ Files\Vim\vim82\doc\syntax.txt
+badd +1 ~\.vim\vimrc_cursor.vim
+badd +1 ~\.vim\vimrc_complete.vim
+badd +1 ~\stocks\1
+badd +1 ~\__startup__
+badd +24 ~\.vim\myplugin\myFind10.vim
+badd +6 ~\.vim\plugin\myPopUpMenu11.vim
+badd +18 ~\.vim\myplugin\myPopUpMenu11.vim
+badd +29 ~\.vim\myplugin\myFind11.vim
+badd +68 C:\Program\ Files\Vim\vim82\doc\tagsrch.txt
+badd +44 ~\.vim\myplugin\myFind12.vim
+badd +694 A:\nProgram\ Files\Vim\vim82\doc\pattern.txt
+badd +2227 A:\nProgram\ Files\Vim\vim82\doc\eval.txt
+badd +1 ~\.vim\myplugin\__Tagbar__.3
+badd +1 ~\Launchy\Utilities\elevate\README.md
+badd +1 C:\windows10\ setupguide\test.md
+badd +1 ~\stocks\elliot.txt
+badd +1 A:\nProgram\ Files\Vim\vim82\doc\map.txt
+badd +1 ~\.vim\doc\regex.test
+badd +1 ~\.vim\doc\myPCRE.txt
+badd +1 A:\nProgram\ Files\Vim\vim82\syntax\vim.vim
+badd +1 ~\.vim\vimrc_function.vim
+badd +1 A:\nProgram\ Files\Vim\vim82\doc\pi_netrw.txt
+badd +1 ~\stocks\elliot\ Wave.txt
+badd +1 ~\.vim\doc\cook.txt
+badd +1 C:\windows10\ setupguide\windows10setup.txt
+badd +1 C:\windows10\ setupguide\test.mk
+badd +1 C:\windows10\ setupguide\t.md
+badd +1 C:\windows10\ setupguide\windows10setup.markdown
+badd +12 C:\windows10\ setupguide\windows10tips.markdown
+badd +17 ~\.vim\myplugin\myStartup16.vim
+badd +1 ~\.vim\colors\solarized.vim
+badd +1 ~\.vim\myplugin\myStartup17.vim
+badd +4 ~\.vim\myplugin\myExplorer23.vim
+badd +1 ~\.vim\doc\myhelp.old
+badd +1 ~\.vim\myplugin\__Tagbar__.2
+badd +1 C:\Program\ Files\Vim\vim82\doc\options.txt
+badd +1 C:\Program\ Files\Vim\vim82\doc\insert.txt
+badd +55 A:\gadgets\ download\가젯모음\TopProcess\TopProcess.css
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToOS
+set winminheight=1 winminwidth=1
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

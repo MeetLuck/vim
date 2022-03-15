@@ -1,0 +1,394 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd D:\Documents\banpo
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+argglobal
+%argdel
+set stal=2
+tabnew
+tabnew
+tabnew
+tabnew
+tabnew
+tabnew
+tabnew
+tabnew
+tabrewind
+edit D:\Documents\banpo\interior.py
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=expr
+setlocal fde=SimpylFold#FoldExpr(v:lnum)
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 131 - ((130 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+131
+normal! 011|
+lcd ~\.vim\download_plugins\unite.vim\rplugin\python3\denite
+tabnext
+edit D:\Documents\banpo\interior_layout.py
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=expr
+setlocal fde=SimpylFold#FoldExpr(v:lnum)
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 28 - ((27 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+28
+normal! 0
+lcd ~\.vim\download_plugins\unite.vim\rplugin\python3\denite
+tabnext
+edit D:\Documents\banpo\moving_ev.py
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=expr
+setlocal fde=SimpylFold#FoldExpr(v:lnum)
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+1
+normal! zo
+7
+normal! zo
+9
+normal! zo
+11
+normal! zo
+144
+normal! zo
+163
+normal! zo
+163
+normal! zc
+let s:l = 156 - ((143 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+156
+normal! 031|
+lcd ~\.vim\download_plugins\unite.vim\rplugin\python3\denite
+tabnext
+edit D:\Documents\banpo\moving_ev_layout.py
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=expr
+setlocal fde=SimpylFold#FoldExpr(v:lnum)
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+8
+normal! zo
+15
+normal! zo
+22
+normal! zo
+25
+normal! zo
+28
+normal! zo
+34
+normal! zo
+36
+normal! zo
+37
+normal! zo
+38
+normal! zo
+39
+normal! zo
+40
+normal! zo
+41
+normal! zo
+42
+normal! zo
+let s:l = 18 - ((17 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+18
+normal! 05|
+lcd ~\.vim\download_plugins\unite.vim\rplugin\python3\denite
+tabnext
+edit D:\Documents\banpo\dong_data.py
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=expr
+setlocal fde=SimpylFold#FoldExpr(v:lnum)
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 28 - ((0 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+28
+normal! 018|
+lcd ~\.vim\download_plugins\unite.vim\rplugin\python3\denite
+tabnext
+edit D:\Documents\banpo\dong_information.py
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=expr
+setlocal fde=SimpylFold#FoldExpr(v:lnum)
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 52 - ((43 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+52
+normal! 0
+lcd ~\.vim\download_plugins\unite.vim\rplugin\python3\denite
+tabnext
+edit D:\Documents\banpo\startpage.py
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=expr
+setlocal fde=SimpylFold#FoldExpr(v:lnum)
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 163 - ((21 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+163
+normal! 035|
+lcd ~\.vim\download_plugins\unite.vim\rplugin\python3\denite
+tabnext
+edit D:\Documents\banpo\howto.github.txt
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+lcd ~\.vim\download_plugins\unite.vim\rplugin\python3\denite
+tabnext
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+terminal ++curwin ++cols=169 ++rows=40 ++type=winpty 
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 1 - ((0 * winheight(0) + 20) / 40)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+lcd ~\.vim\download_plugins\unite.vim\rplugin\python3\denite
+tabnext 8
+set stal=1
+badd +1 ~\.vimshortcut
+badd +5 D:\Documents\banpo\minwondb.py
+badd +33 D:\Documents\banpo\streamlit_dataframe.py
+badd +97 D:\Documents\banpo\minwon.py
+badd +36 D:\Documents\banpo\clean_data.py
+badd +1 D:\Documents\banpo\create_sheets.py
+badd +27 D:\Documents\d\sqlite.tut.py
+badd +1 D:\Documents\infra8.py
+badd +1 D:\Documents\helper.py
+badd +13 ~\tutorial\pathlib.tut.py
+badd +15 D:\Documents\d\minwon7.py
+badd +107 D:\Applications\Keypirinha\portable\Profile\Packages\AllInOne\AllInOne.py
+badd +1 D:\Documents\infra.py
+badd +52 D:\Documents\박종우\minwon7.py
+badd +1 D:\Documents\박종우\helper.py
+badd +19 D:\Documents\박종우\clean_data.py
+badd +12 D:\Documents\helper1.py
+badd +1 D:\Documents\infra9.py
+badd +10 D:\Documents\banpo\startpage2.py
+badd +62 D:\Documents\banpo\starthelp\starthelp.py
+badd +4 D:\Documents\banpo\pysimplegui.tut.py
+badd +1 D:\Documents\banpo\term
+badd +1 D:\Documents\banpo\starthelp\:term
+badd +52 D:\Documents\banpo\startpage_layout3.py
+badd +15 D:\Documents\banpo\sg.windows.py
+badd +8 D:\Documents\banpo\startpage3.py
+badd +23 D:\Documents\banpo\startpage4.py
+badd +18 D:\Documents\banpo\sg.Button.py
+badd +1 D:\Documents\banpo\startpage_layout
+badd +32 D:\Documents\banpo\startpage_layout4.py
+badd +2 D:\Documents\banpo\starthelp\filesfolders.py
+badd +4 ~\_vimrc
+badd +1 ~\.vim\download_plugins\unite.vim\rplugin\python3\denite\source
+badd +1 ~\.vim\download_plugins\unite.vim\rplugin\python3\denite\NetrwTreeListing
+badd +49 ~\.vim\vimrc_mapping.vim
+badd +9 ~\test.py
+badd +5 D:\Documents\banpo\sg.Frame.py
+badd +12 D:\Documents\banpo\sg.CalendarButton.py
+badd +1 D:\Documents\banpo\sg.Input.py
+badd +44 D:\Documents\banpo\startpage.py
+badd +41 D:\Documents\banpo\listbox_example.py
+badd +10 D:\Documents\banpo\sg.ListBox.py
+badd +1 D:\Documents\banpo\layout\frame2.py
+badd +1 D:\Documents\banpo\startpage_layout5.py
+badd +19 D:\Documents\banpo\layout\frame1_column2.py
+badd +1 D:\Documents\banpo\layout_help.py
+badd +1 D:\Documents\banpo\layout\frame1.py
+badd +26 D:\Documents\banpo\layout\frame1_column1.py
+badd +3 D:\Documents\banpo\layout\__init__.py
+badd +1 D:\Documents\banpo\layout\frame1_columns2.py
+badd +1 D:\Documents\banpo\startpage_layout.py
+badd +13 D:\Documents\banpo\layout\layout_help.py
+badd +1 D:\Documents\banpo\sg.Text.py
+badd +153 D:\Documents\banpo\moving_ev1.py
+badd +1 D:\Documents\banpo\sg.set_options.py
+badd +1 D:\Documents\banpo\ev_protect.py
+badd +1 D:\Documents\banpo\sort_listoflist.py
+badd +1 D:\Documents\banpo\moving_ev_layout2.py
+badd +43 D:\Documents\banpo\moving_ev6.py
+badd +9 D:\Documents\banpo\theme.py
+badd +17 D:\Documents\banpo\sg.Table_csv.py
+badd +3 D:\Documents\banpo\test.csv
+badd +1 D:\Documents\banpo\csv_test.py
+badd +24 D:\Documents\banpo\pandas_totable.py
+badd +39 D:\Documents\d\clean_data.py
+badd +1 D:\Documents\banpo\interior_layout.py
+badd +1 D:\Documents\banpo\interior.py
+badd +66 D:\Documents\banpo\moviing_ev_error12.py
+badd +20 D:\Documents\banpo\moving_ev_layout4.py
+badd +16 D:\Documents\banpo\moving_ev.csv
+badd +197 D:\Documents\banpo\moving_ev8.py
+badd +5 D:\Documents\banpo\test.py
+badd +1 D:\Documents\banpo\moving_ev_layout1.py
+badd +9 D:\Documents\banpo\howto.github.txt
+badd +21 D:\Documents\banpo\readme.md
+badd +37 D:\Documents\banpo\moving_ev_layout.py
+badd +173 D:\Documents\banpo\moving_ev.py
+badd +0 D:\Documents\banpo\dong_data.py
+badd +0 D:\Documents\banpo\dong_information.py
+badd +30 D:\Documents\banpo\tablesort.py
+badd +1 D:\Documents\banpo\sg.Tablesort.py
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToOS
+set winminheight=1 winminwidth=1
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

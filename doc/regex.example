@@ -1,0 +1,33 @@
+ 
+#negative look ahead @!#
+ e.g. 
+foo\(bar\)\@!
+        note match any "foo" not followed by "bar"
+\vfoo(bar)@!baz
+foobar
+fooaar
+fooaarbaz
+foobazbaz
+    note only match last 'foobazbaz'
+
+\va.(p)@!
+        note "a", "apbp", "app", "appp", etc. not immediately
+
+\va(p)@!
+a
+ap
+note  "a"
+1. match a
+2. match $(EOL)
+
+\va.{-}(p)@!
+a
+ap
+app
+appp
+ap!p
+as
+ note "a", "ap", "app", "appp", etc. not immediately followed by a "p"
+    1. match 'a'
+    2. match nothing
+    3. p@! match [^p] , $(EOL) in the case of 'a'

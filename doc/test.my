@@ -1,0 +1,8 @@
+This is Test file for filetype=my
+'myWord is lowercase word, link to Comment'
+'myVim is transparent contained highlighted like vim'
+'this is myString, contains myWord, myVim called vim'
+'myString links to String'
+'String links to Constant'
+'myWord links to Comment'
+

@@ -1,0 +1,72 @@
+*myshell.txt*		For Vim version 8.0.			Last change: 2017 Mar 19
+
+		  #Personal Shell Help Menual#  by Author Meetluck
+
+
+
+Table Of Contents~
+================================================================================
+                                                                         *myshell*
+1. unzip,tar,gzip...................................................|myshell-zip|
+
+
+#1. unzip,tar,gzip#
+--------------------------------------------------------------------------------
+                                                                  *myshell-unzip* 
+    `unzip` `-l` file.zip   list files
+    `unzip` file.zip `-d` dirname    extract into dirname(create if not exist)
+    tar `-xvf` file.tar   extract tar file
+    gzip `-l` file.gz     same as gzip --list
+    gzip `-d` file.gz     same as gzip --decompress
+
+
+
+2. wget~
+--------------------------------------------------------------------------------
+                                                                  *myshell-wget* 
+    using the server-provided name~
+    $ wget `--content-disposition` URL
+
+    multiple files~
+    $ wget `-i` download-file-list.txt
+    $ wget `--content-disposition -i` download-file-list.txt
+    $ download-file-list.txt
+        URL1
+        URL2
+        URL3
+
+
+
+3. curl~
+--------------------------------------------------------------------------------
+                                                                  *myshell-curl* 
+
+    $ curl `-JLO` URL
+    -J forces the -O to get that name from the content-disposition header
+     rather than the URL, and -L follows redirects if needed.
+
+    e.g. download a single file from github.com
+    > curl -JLO https://raw.githubusercontent.com/path-to-file/
+
+
+
+
+4. redir~
+--------------------------------------------------------------------------------
+                                                                  *myshell-redir* 
+
+ 2>&1~
+  2>    redirect stderr
+  &1    stdout as destination    note like ~$ ls > file 
+
+
+5. find~
+--------------------------------------------------------------------------------
+                                                                  *myshell-find* 
+  find fle in current directory~
+    $find . -name filename.ext
+  find in home directory~
+    $find /home -name filename*.ext
+
+
+vim: set et ts=2 sw=2 sts=2 ft=help textwidth=0:

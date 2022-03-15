@@ -1,0 +1,33 @@
+*myhelp.txt*		For Vim version 8.0.			Last change: 2017 Mar 19
+
+		  #Personal Cook Manual#  by Author Meetluck
+
+Table Of Contents~
+================================================================================
+                                                                         *mycook*
+1.get help...................................................|mycook-gethelp|
+  
+
+helper files~
+-------------------------------
+ 1. source myhelp.vim
+ 2. ~/.vim/after/ftplugin/help.vim    note <A-b> make bold
+ 2. ~/.vim/after/syntax/help.vim
+
+
+
+#1. MSG#
+--------------------------------------------------------------------------------
+                                                                  *myhelp-msg* 
+MSG(글루탐산+나트륨)~
+   미원, 다시다
+핵산 = IMP + GMP~
+  백설 바이오 핵산2.5(MSG+2.5IMP/GMP)
+IMP : 멸치, 가다랑어, 쇠고기
+GMP : 표고버섯
+소금 : MSG : 핵산 =   100 : 10 : 1~
+호박산 나트륨~
+  조개류
+
+
+ vim: set et ts=2 sw=2 sts=2 ft=help textwidth=0:

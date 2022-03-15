@@ -1,0 +1,22 @@
+
+ About {{{
+    This text should be hightlighted as Group myAbout.
+    About
+    Edit
+    This text should be hightlighted as Group myAbout.
+    }}}
+
+    Edit {{{
+    This text not myAbout
+ }}}
+
+
+
+
+
+
+
+
+
+
+vim set ft=my conceallevel=1: 

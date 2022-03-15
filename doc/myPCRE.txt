@@ -1,0 +1,204 @@
+*myPCRE.txt*    For Vim version 8.0     Last Modified: 2018 March 19
+
+
+                    Perl-compatible Regular Expressions(PCRE)
+
+Table of Contents~
+================================================================================
+                                                                       *myPCRE* 
+
+1. metachracters............................................|myPCRE-metacharacters|
+2. escape characters........................................|myPCRE-escape|
+
+
+#1. meta-characters#
+--------------------------------------------------------------------------------
+                                                           *myPCRE-metacharacters* 
+outside [square-brackets]
+    \   general escape character
+    ^   assert start of string
+    $   assert end of string
+    .   match any character except newline(<EOL>)
+    [   start character class definition
+    (   start subpattern
+    )   end subpattern
+    |   start of alternative branch
+    ?   extends the meaning of (
+        also 0 or 1 quantifier
+        also quantifier minimizer
+    *   0 or more quantifier
+    +   1 or more quantifier
+        also "possessive quantifier"
+    {   start min/max quantifier
+
+    Note: literals  `\`\  `\`^  `\`$  `\`.  `\`[  
+
+inside [square-brackets]
+    \   general escape character
+    ^   negate the class, but only if the first character
+    -   indicates character range
+    [   POSIX character class(only if followed by POSIX syntax)
+    ]   terminates the character class
+
+
+#2. escape characters#
+---------------------------------------------------------------------------------------
+                                                                         *myPCRE-escape* 
+    \Qliterals\E~
+     \Qabc$xyz\E
+
+    Non-printing characters~
+    \e  <Esc>
+    \t  <Tab>
+    \b  <Backspace>
+    \r  <CR>
+    \n  <EOL> newline
+
+    character classes~
+    \d     digit           [0-9]             \D     Non-digit       [^0-9]
+    \a     alphabet        [a-zA-Z]          \A     Non-alphabet    [^a-zA-Z]
+    \s     whitespace      <Space> <Tab>     \S     Non-whitespace  
+    \w     word            [0-9a-zA-Z_]      \W     Non-word        [^0-9a-zA-z]
+    \l     lowercase       [a-z]             \L     Non-lowercase   [^a-z]
+    \u     uppercase       [A-Z]             \U     Non-uppercase   [^A-Z]
+
+    character set   [ABC]   same as 'A | B | C'
+    negated set     [^ABC]
+    range           [A-C]
+
+    myWarning  character classes such as \d or \u does NOT work to match a digit or uppercase
+
+
+#3. alternations#
+---------------------------------------------------------------------------------------
+                                                                    *myPCRE-alternation* 
+>
+    A|B|C    matches A or B or C
+    (A|B)C   matches AC or AC
+    A|BC     matches A or BC
+    A|^BC    matches A or ^BC
+
+
+#4. assertions#
+---------------------------------------------------------------------------------------
+                                                                      *myPCRE-assertion* 
+circumflex(^)~
+    need not be the first character of pattern if alternatives are involed,
+    but is should be the first thing in each alternative.
+    if all possible alternatives start with ^, it is said to be 'anchored'.
+
+dollar($)~
+    is an asserttion that is true ONLY IF the current matching point is 
+    at the end of the subject string, or immediately before a newline at the
+    end of the string.
+    need not be the last character of the pattern if alternatives are involved,
+    but it should be the last item in any branch.
+
+assertions(zero-length)~
+    Note: an assertion specifies a condition that has to be met at a particular point
+       in a match WITHOUT CONSUMING any character from the subject string
+
+    \b  matches at a word boundary
+    \B  matches when not at a word boundary
+    \A  matches at the start of the subject
+    \Z  matches at the end of the subject
+    \z  matches ONLY at the end of the subject
+    \G  matches at the first matching position in the subject
+
+
+#5. square brackets []  and character classes#
+---------------------------------------------------------------------------------------
+                                                                      *myPCRE-classes* 
+
+an opening square bracket '[' introduces a character class, terminated by a
+closing square bracket.
+a character class matches a SINGLE character in the subject.
+ e.g. 
+    [aeiou]    matches any vowel
+    [^aeiou]   matches any NON-vowel
+    [\[\^\]]   matches literal [ or ^ or ]
+
+hyphen '-' can be used to specify a range of chracters in a character class.
+[\- literal hyphen]    literal '-'
+
+character types \d,\s,\a,\w,\W may also appear in a character class.
+ e.g. 
+    [\dABC]    matches digit 'or' A 'or' B 'or' C
+    [1-3\a]    matches [1-3] or [a-z]   note  \a not working in VIM
+    [1-5w-z]   matches [1-5] or [w-z]
+
+#6. subpatterns#
+---------------------------------------------------------------------------------------
+                                                                      *myPCRE-subpatterns* 
+
+1. it localizes a set of ALTERNATIVES.
+    e.g. >
+    cataract|erpillar|       → matches 'cataract' or 'erpillar' or 'empty' string
+    cat(aract|erpillar|)     → matches 'cataract' or 'caterpillar' or 'cat'
+
+2. it sets up the subpattern as a CAPTURING subpattern.
+    capturing substrings~
+    subject string : "the red king"
+    /the ((red|white) (king|queen))
+    →  captured substrings : "red king","red","king" are numbered 1,2, and 3.
+    without capturing substrings~
+    subject string : "the white queen"
+    /the ((?:red|white) (king|queen))
+    →  captured substrings : "white queen","queen" are numbered 1,2.
+
+3. named subpatterns~
+    (?<name>...)
+    (?'name'...)
+    (?P<name>...)
+
+4. quantifiers~
+    can follow any of the following items.
+    a literal character
+    a dot metacharacter     .+ 
+    an escape such as       \d+,\w*,...
+    a character class       [a-z]+
+    a back reference
+    a subpattern            (capturing)+
+
+    {n,m}
+    z{2,4} matches 'zz','zzz','zzzz'
+    [aeiou]{3,} matches AT LEAST 3 successive vowels
+    \d{8} matches EXACTLY 8 digit.
+
+    *   is equivalent  to {0,}
+    +   is equivalent  to {1,}
+    ?   is equivalent  to {0,1}
+
+greedy~
+    match as MUCH as possible
+
+    e.g. 
+>
+    pattern : /\*.*\*/
+    subject : /* first comment */ not comment /* second comment */
+    matches /* first ....  /* second comment */
+<
+
+non-greedy~
+    match as FEW as Possible
+    if qunatifier is followed by a quenstion mark '?'
+    .*?
+    .+?
+    [a-z]+?
+    \s{2,4}?  
+
+>
+    subject : /* first comment */ not comment /* second comment */
+    pattern : /\*.*?\*/     → matches /* first comment */
+    pattern : /\*[^*/]*\*/  → matches /* first comment */
+
+    subject : "xyz123abc123"
+    pattern : (.*)abc   → matches 'xyz123abc'
+    pattern : (.*)abc\1 → matches '123abc123'
+<
+
+
+
+
+
+ vim: set et ts=2 sw=2 sts=2 ft=help:

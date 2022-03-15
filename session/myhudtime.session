@@ -1,0 +1,130 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd C:\Program\ Files\Windows\ Sidebar\Gadgets\myDigitalClock.gadget\js
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+argglobal
+%argdel
+$argadd \Program\ Files\Windows\ Sidebar\Gadgets\myTopIO.gadget\gadget.xml
+set stal=2
+tabnew
+tabrewind
+edit C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime.gadget\content.html
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 9 - ((8 * winheight(0) + 17) / 35)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+9
+normal! 040|
+lcd C:\Program\ Files\Windows\ Sidebar\Gadgets\myTopIO.gadget
+tabnext
+edit C:\Program\ Files\Windows\ Sidebar\Gadgets\myDigitalClock.gadget\js\gadget.js
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+53
+normal! zo
+73
+normal! zo
+let s:l = 9 - ((8 * winheight(0) + 17) / 35)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+9
+normal! 013|
+lcd C:\Program\ Files\Windows\ Sidebar\Gadgets\myTopIO.gadget
+tabnext 2
+set stal=1
+badd +1 ~\.vimshortcut
+badd +5 D:\Applications\mykeypirinha\ShowTime\showtime.py
+badd +14 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTopIO.gadget\gadget.xml
+badd +0 C:\Program\ Files\Windows\ Sidebar\Gadgets\myDigitalClock.gadget\js\gadget.js
+badd +9 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime.gadget\content.html
+badd +10 D:\Applications\Keypirinha\default\App\Keypirinha.ini
+badd +86 D:\Applications\Keypirinha\portable\Profile\User\Keypirinha.ini
+badd +268 D:\Applications\Keypirinha\portable\Local\ConfigEdit\Packages\FilesCatalog\filescatalog.ini
+badd +6 D:\Applications\Keypirinha\portable\Profile\User\filescatalog.ini
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime.gadget\js\gadget.js
+badd +22 C:\Program\ Files\Windows\ Sidebar\Gadgets\Teatime.gadget\teatime.html
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTeatime.gadget\timer.js
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTeatime.gadget\gadget.xml
+badd +17 C:\Program\ Files\Windows\ Sidebar\Gadgets\MyWeather2.gadget\gadget.html
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\MyWeather2.gadget\gadget.xml
+badd +571 C:\Program\ Files\Windows\ Sidebar\Gadgets\MyWeather2.gadget\js\gadget.js
+badd +19 C:\Program\ Files\Windows\ Sidebar\Gadgets\MyWeather2.gadget\css\style.css
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\Teatime.gadget\teatime.js
+badd +47 C:\Program\ Files\Windows\ Sidebar\Gadgets\Teatime.gadget\timer.js
+badd +8 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\gadget.xml
+badd +25 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\js\myhud.js
+badd +4 ~\_vimrc
+badd +152 ~\.vim\vimrc_options.vim
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\js\
+badd +1 ~\
+badd +12 ~\.vim\after\colors\solarized.vim
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\js\gadget.js
+badd +8 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\content.html
+badd +9 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\css\myhud.css
+badd +13 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\css\gadget.css
+badd +10 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime2.gadget\css\settings.css
+badd +291 A:\gadgets\ download\TopProcess\TopProcess.js
+badd +13 A:\gadgets\ download\TopProcess\TopProcess.html
+badd +1 A:\gadgets\ download\TopProcess\TopProcess.css
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime.gadget\css\gadget.css
+badd +93 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime.gadget\settings.html
+badd +8 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTopIO.gadget\TopProcess.html
+badd +13 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTopIO.gadget\TopProcess.css
+badd +126 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTopIO.gadget\TopProcess.js
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myTopIO.gadget\
+badd +1 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime.gadget\js\console.log.js
+badd +3 C:\Program\ Files\Windows\ Sidebar\Gadgets\myHUDtime.gadget\js\localization.js
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToOS
+set winminheight=1 winminwidth=1
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

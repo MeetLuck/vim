@@ -1,0 +1,81 @@
+" :h statusline
+" "Do NOT use %#ColorGroup#, just use %N*" " "because of StatulsLineNotCurrentwindow"
+" cterm235:guifg#262626 cterm246:guibg#949494
+hi clear StatusLine
+hi clear StatusLineNC
+"hi StatusLine   cterm=None ctermfg=1    ctermbg=8    gui=None guifg=darkgray guibg=#00153a
+hi StatusLine   cterm=None ctermfg=1    ctermbg=8    gui=None guifg=darkgray guibg=#001050
+"hi StatusLine   cterm=None ctermfg=1    ctermbg=8    gui=None guifg=darkgray guibg=#001540
+hi StatusLineNC cterm=None ctermfg=238  ctermbg=None gui=inverse guifg=#001050 guibg=#005090
+"hi StatusLineNC cterm=None ctermfg=238  ctermbg=None gui=inverse guifg=#001327 guibg=#004090
+"hi StatusLineNC cterm=None ctermfg=238  ctermbg=None gui=inverse guifg=#002434 guibg=#0070a0
+
+hi   User1  ctermfg=1   ctermbg=8  gui=None         guifg=darkgray guibg=#001a50
+"hi  User2  ctermfg=12  ctermbg=8  gui=inverse      guifg=darkgray  guibg=#008000
+"hi   User2  ctermfg=13  ctermbg=8  gui=None         guifg=darkgray guibg=#001a80
+hi   User2  ctermfg=13  ctermbg=8  gui=None         guifg=darkgray
+hi   User3  ctermfg=13  ctermbg=8  gui=bold,italic  guifg=#00a000
+"hi   User3  ctermfg=13  ctermbg=8  gui=bold,italic  guifg=#00a000 guibg=#001a60
+"hi  User2  ctermfg=13  ctermbg=8  gui=None         guifg=#00c000   guibg=#004090
+"hi  User3  ctermfg=13  ctermbg=8  gui=bold,italic  guifg=#00f000   guibg=#003767
+hi   User4  ctermfg=12  ctermbg=8  gui=None         guifg=darkgray guibg=#001a50
+hi   User5  ctermfg=13  ctermbg=8  gui=italic       guifg=darkgray  guibg=#002050
+hi   User6  ctermfg=13  ctermbg=8  gui=italic       guifg=darkgray  guibg=#002550
+
+set statusline=
+"Winnr:
+set statusline+=%1*\ %{winnr()}\ 
+set statusline+=%*
+"File Name Header:
+set statusline+=\ %15{fnamemodify(expand('%:p'),':~:h')}\
+"File Name Tail:
+set statusline+=%t\ \ 
+set statusline+=%*
+"Modified:
+set statusline+=%2*%m
+"Read Only:
+set statusline+=\%r
+"File Type:
+set statusline+=\%y
+"Global Mark:
+set statusline+=%3*%{GlobalMark()}
+set statusline+=%*
+"Seperator:
+set statusline+=%=
+"This Session:
+set statusline+=\ %6*%15{GetSession()}\ 
+"Cursor Column:
+set statusline+=%4*\ %c,
+"Cursor Line Total Lines:
+set statusline+=%l/%L
+"Percent Through File:
+set statusline+=\ %P\ 
+"File Encoding:
+set statusline+=%5*\ %{&fenc}\ 
+"File Format:
+set statusline+=%4*\ %{&ff}\ 
+
+function! GlobalMark()
+    let gmarks="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    let settedmark=""
+    for marker in split(gmarks,'\zs')
+        if getpos("'" .marker)[0] == winbufnr(0)
+            if getpos("'".marker)[1]!=0
+                let settedmark.=marker
+            endif
+        endif
+    endfor
+    if strlen(settedmark)
+        return " ".settedmark ." "
+    else
+        return ""
+    endif
+    unlet gmarks,settedmark
+endfunction
+
+function! GetSession()
+    if len(v:this_session)
+        return fnamemodify(v:this_session,':~:t')
+    else
+        return 'no session'
+endfunction

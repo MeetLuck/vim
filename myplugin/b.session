@@ -1,0 +1,164 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~\.vim\myplugin
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+argglobal
+%argdel
+edit ~\.vim\myplugin\myExplorer25.vim
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+let s:l = 237 - ((18 * winheight(0) + 18) / 36)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+237
+normal! 034|
+tabnext 1
+badd +1 ~\.vimshortcut
+badd +2 ~\AppData\Roaming\wsltty\config
+badd +1 ~\.vim\after\colors\solarized.vim
+badd +1 ~\.vim\vimrc_options.vim
+badd +39 ~\.vim\syntax\wave.vim
+badd +40 ~\stocks\fib.py
+badd +135 ~\stocks\kospi.wave
+badd +28 ~\_vimrc
+badd +1 ~\.vim\myplugin\myStartup11.vim
+badd +1 ~\.vim\myplugin\myFind13.vim
+badd +236 ~\.vim\myplugin\myExplorer25.vim
+badd +59 ~\.vim\autoload\mywindow.vim
+badd +1 ~\.vim\myplugin\myExplorer22.vim
+badd +1 ~\.vim\myplugin\myExplorer21.vim
+badd +1 ~\.vim\myplugin\aa
+badd +1 ~\.vim\vimrc_helper.vim
+badd +1 ~\.vim\restorescreen.vim
+badd +1 ~\.vim\vimrc_statusline.vim
+badd +139 ~\.vim\myplugin\myStartup19.vim
+badd +1 ~\.vim\myplugin
+badd +1 ~\.vim\myplugin\SearchWN10.vim
+badd +1 ~\.vim\myplugin\SearchWordNet12.vim
+badd +1 ~\.vim\myplugin\OldFiles10.vim
+badd +1 ~\.vim\doc
+badd +1 ~\.vim\myplugin\myPopUpMenu10.vim
+badd +1 ~\.vim\myplugin\forgetmenot.txt
+badd +1 ~\.vim\plugin\forgetmenot.txt
+badd +1 ~\.vim\vimrc_mapping.vim
+badd +1 ~\.vim\myIDE.session
+badd +1 ~\.vim\myplugin\myExplorer11.vim
+badd +1 ~\.vim\after\syntax\help.vim
+badd +1 ~\.vim\myplugin\wordnet\plugin\wordnet.vim
+badd +1 ~\.vim\download_plugins\vim-startify\autoload\startify.vim
+badd +1 ~\.vim\download_plugins\vim-startify\plugin\startify.vim
+badd +1 ~\.vim\myplugin\myExplorer10.vim
+badd +1 ~\.vim\myplugin\myStartup10.vim
+badd +1 ~\.vim\download_plugins\tlib_vim\samples\tlib\input\tlib_input_list.vim
+badd +12 ~\.vim\syntax\mysession.vim
+badd +1 ~\.vim\syntax\BufEx.vim
+badd +1 ~\.vim\session\startup.session
+badd +1 ~\.vim\autoload\mylib.vim
+badd +1 ~\.vim\syntax\startup.vim
+badd +1 C:\nProgram\ Files\ (x86)\Vim\vim81\doc\options.txt
+badd +1 ~\.vim\download_plugins\tlib_vim\autoload\tlib\file.vim
+badd +1 D:\VHD\windows7Setting\gvim.settings.txt
+badd +1 C:\nProgram\ Files\ (x86)\Vim\vim81\doc\eval.txt
+badd +1 C:\nProgram\ Files\ (x86)\Vim\vim81\syntax\help.vim
+badd +1 ~\.vim\plugin\myPopUpMenu10.vim
+badd +1 ~\.vim\autoload\popup_terminal.vim
+badd +1 ~\.vim\autoload\__Tagbar__.3
+badd +1 A:\nProgram\ Files\Vim\vim82\doc\terminal.txt
+badd +1 ~\.vim\myplugin\marksplit.vim
+badd +1 ~\.vim\syntax\buf.vim
+badd +1 ~\.vim\syntax\x.vim
+badd +1 ~\.vim\syntax\mypopup.vim
+badd +1 ~\.vim\syntax\my.vim
+badd +1 ~\.vim\syntax\test.mark
+badd +175 ~\.vim\doc\myRegEx.txt
+badd +1 A:\nProgram\ Files\Vim\vim82\doc\usr_27.txt
+badd +51 ~\.vim\doc\myshell.txt
+badd +1 ~\.vim\syntax\mark.vim
+badd +1 ~\.vim\after\syntax\
+badd +1 ~\.vim\syntax\buf
+badd +1 ~\.vim\syntax\popup.vim
+badd +1 A:\nProgram\ Files\Vim\vim82\syntax\help.vim
+badd +1 A:\nProgram\ Files\Vim\vim82\doc\syntax.txt
+badd +1 ~\.vim\vimrc_cursor.vim
+badd +1 ~\.vim\vimrc_complete.vim
+badd +1 ~\stocks\1
+badd +1 ~\__startup__
+badd +52 ~\stocks\wave1ofABC.wave
+badd +24 ~\.vim\myplugin\myFind10.vim
+badd +6 ~\.vim\plugin\myPopUpMenu11.vim
+badd +18 ~\.vim\myplugin\myPopUpMenu11.vim
+badd +29 ~\.vim\myplugin\myFind11.vim
+badd +68 C:\Program\ Files\Vim\vim82\doc\tagsrch.txt
+badd +44 ~\.vim\myplugin\myFind12.vim
+badd +694 A:\nProgram\ Files\Vim\vim82\doc\pattern.txt
+badd +2227 A:\nProgram\ Files\Vim\vim82\doc\eval.txt
+badd +1 ~\.vim\myplugin\__Tagbar__.3
+badd +1 ~\Launchy\Utilities\elevate\README.md
+badd +4 C:\windows10\ setupguide\test.md
+badd +1 ~\stocks\dow.wave
+badd +1 ~\stocks\elliot.txt
+badd +1 ~\test.vim
+badd +1 A:\nProgram\ Files\Vim\vim82\doc\map.txt
+badd +1 ~\.vim\doc\regex.test
+badd +1 ~\.vim\doc\myPCRE.txt
+badd +1 A:\nProgram\ Files\Vim\vim82\syntax\vim.vim
+badd +1 ~\.vim\vimrc_function.vim
+badd +1 A:\nProgram\ Files\Vim\vim82\doc\pi_netrw.txt
+badd +1 ~\stocks\elliot\ Wave.txt
+badd +33 ~\.vim\doc\mycook.txt
+badd +1 ~\.vim\doc\cook.txt
+badd +290 ~\.vim\doc\myhelp.txt
+badd +1 C:\windows10\ setupguide\windows10setup.txt
+badd +44 C:\windows10\ setupguide\windows10tips.txt
+badd +1 C:\windows10\ setupguide\test.mk
+badd +12 C:\windows10\ setupguide\t.md
+badd +1 C:\windows10\ setupguide\windows10setup.markdown
+badd +1 C:\windows10\ setupguide\windows10tips.markdown
+badd +5 ~\.vim\myplugin\myStartup16.vim
+badd +463 ~\.vim\colors\solarized.vim
+badd +1 ~\.vim\myplugin\myStartup17.vim
+badd +1 ~\.vim\myplugin\myStartup18.vim
+badd +1 ~\.vim\myplugin\myExplorer23.vim
+badd +1 ~\.vim\doc\myhelp.old
+badd +1 ~\.vim\myplugin\__Tagbar__.2
+badd +8968 C:\Program\ Files\Vim\vim82\doc\options.txt
+badd +1946 C:\Program\ Files\Vim\vim82\doc\insert.txt
+badd +1 ~\.vim\myplugin\myExplorer24.vim
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToOS
+set winminheight=1 winminwidth=1
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :
